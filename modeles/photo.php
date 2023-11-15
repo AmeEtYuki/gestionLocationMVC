@@ -1,5 +1,7 @@
 <?php
 class photo {
-    public function
+    function __construct() {
+
+    }
 }
 ?>
