@@ -19,6 +19,7 @@ class vue{
         $this->entete();
         ?>
         ACCUEIL
+        <a href="/?action=inscription">Page inscription</a>
         <?php
         $this->pied();
     }
@@ -39,7 +40,7 @@ class vue{
             <input type="email" name="" id="">
             <input type="password" name="password" id="" placeholder="Votre mot de passe">
             <input type="password" name="password2" id="" placeholder="Confirmez votre mot de passe">
-            <input type="submit" value="">
+            <input type="submit" value="" name="ok">
         </form>
 
         <?php

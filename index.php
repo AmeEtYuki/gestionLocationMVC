@@ -4,8 +4,8 @@ session_start();
 require("vue.php");
 require("controller.php");
 
-if(isset($GET_["action"])){
-    switch ($GET_["action"]) {
+if(isset($_GET["action"])){
+    switch ($_GET["action"]) {
         case 'accueil':
             #page d'accueil
             (new controller)->accueil();
