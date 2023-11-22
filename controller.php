@@ -10,5 +10,7 @@ class controller {
         $email = (isset($_POST["email"]))?$_POST["email"]:"";
         (new vue)->pageInscription();
     }
+
+    public function connexion(){}
 }
 ?>
