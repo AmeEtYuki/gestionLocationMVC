@@ -22,6 +22,10 @@ if(isset($_GET["action"])){
             #page d'accueil
             (new controller)->showBien();
             break;
+        case 'deconnexion':
+            #page d'accueil
+            (new controller)->deconnexion();
+            break;
         default:
             #mauvaise action
             (new vue)->erreur404();

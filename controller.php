@@ -44,5 +44,14 @@ class controller {
     }
 
     public function connexion(){}
+
+    public function deconnexion(){
+        session_destroy();
+        (new vue)->accueil();
+    }
+
+    public function showBien(){
+        //get id du bien
+    }
 }
 ?>
