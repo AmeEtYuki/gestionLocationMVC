@@ -14,6 +14,14 @@ if(isset($_GET["action"])){
             #page d'inscription
             (new controller)->inscription();
             break;
+        case 'connexion':
+            #page de connexion
+            (new controller)->connexion();
+            break;
+        case 'showBien':
+            #page d'accueil
+            (new controller)->showBien();
+            break;
         default:
             #mauvaise action
             (new vue)->erreur404();
