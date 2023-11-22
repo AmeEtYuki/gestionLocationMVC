@@ -3,7 +3,7 @@ session_start();
 
 require("vue.php");
 require("controller.php");
-
+require("database.php");
 if(isset($_GET["action"])){
     switch ($_GET["action"]) {
         case 'accueil':
