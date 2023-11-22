@@ -3,27 +3,21 @@ class controller {
     public function accueil(){
         (new vue)->accueil();
     }
-    private function emptyString($string) {
-        if($string != "") {
-            return false;
-        } else {
-            return true;
-        }
-    }
+    
     public function inscription() {
         if(isset($_POST['ok'])) {
+            //protection anti champ null (postman)
             $mdp1 = (isset($_POST["password"]))?$_POST["password"]:"";
             $mdp2 = (isset($_POST["password2"]))?$_POST["password2"]:"";
             $email = (isset($_POST["email"]))?$_POST["email"]:"";
             $errors=[];
-            if($this->emptyString($mdp1)) {
+            if($mdp1 == "") {
                 $errors[]="Champ mot de passe 1 vide.";
             }
-            //var_dump($errors);
-            if($this->emptyString($mdp2)) {
+            if($mdp2 == "") {
                 $errors[]="Champ mot de passe 2 vide.";
             }
-            if($this->emptyString($email)) {
+            if($email == "") {
                 $errors[]="Champ email vide.";
             }
             if ($mdp1 != $mdp2) {
@@ -61,6 +55,11 @@ class controller {
 
     public function showBien(){
         //get id du bien
+        $errors=[];
+        if(isset($_GET["idBien"])){
+            $id = $_GET["idBien"];
+            
+        }
     }
 }
 ?>
