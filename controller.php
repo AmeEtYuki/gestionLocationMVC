@@ -10,5 +10,7 @@ class controller {
         (new view)->pageInscription();
 
     }
+
+    public function connexion(){}
 }
 ?>
