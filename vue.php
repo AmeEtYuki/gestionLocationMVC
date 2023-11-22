@@ -32,8 +32,16 @@ class vue{
         <?php
         $this->pied();
     }
-    public function pageInscription($message = null) {
+    public function pageInscription($message) {
         $this->entete();
+        if(count($message) != 0) {
+            echo "<div class='errList'>";
+            for($i = 0; count($message) > $i; $i++) {
+                echo "<div class='errMsgLogIns'>".$message[$i]."</div><br>";
+            }  
+            echo "</div>";
+        } 
+        
         ?>
         <?=($message != null)?$message."<br>":"";?>
         <form action="index.php?action=inscription" method="post">
