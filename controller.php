@@ -63,9 +63,15 @@ class controller {
             $errors=[];
             if($login == "") { $errors[] = "Champ nom d'utilisateur / email vide.";  }
             if($mdp == "") { $errors[]="Champ mot de passe vide"; }
-        }
-    }
+            if(sizeof($errors) == 0) {
+                (new utilisateur)->connexion();
+            } else {
+                (new vue)->connexion($errors);
+            }
+            //obtenirPage(numPage, nbLignes)
 
+    }
+}
     public function deconnexion(){
         session_destroy();
         (new vue)->accueil();

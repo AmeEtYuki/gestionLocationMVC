@@ -32,7 +32,7 @@ class vue{
         <?php
         $this->pied();
     }
-    public function pageInscription($message) {
+    public function pageInscription($message = []) {
         $this->entete();
         
         if(count($message) != 0) {
