@@ -1,11 +1,11 @@
 <?php
-class bien {
+class piece {
     private $pdo;
     function __construct() {
         $this->pdo = getPDO();
     }
 
-    public function getInfosBien($IdBien){
+    public function getInfosPiece($IdBien){
         $sql = "SELECT * FROM bien WHERE id = :id";
         $req = $this->pdo->prepare($sql);
         $req->bindParam(':id', $idBien , PDO::PARAM_INT);
@@ -13,15 +13,8 @@ class bien {
         return $req->fetch(PDO::FETCH_ASSOC);  
     }
 
-    public function getNombrePieceETSurfaceBien($idBien){
-        $sql = "CALL getNombrePieceETSurface( :id )";
-        $req = $this->pdo->prepare($sql);
-        $req->bindParam(':id', $idBien , PDO::PARAM_INT);
-        $req->execute();
-        return $req->fetch(PDO::FETCH_ASSOC);  
-    }
-
-    public function getAllBiens($page){
+    public function getAllPiece($idBien){
+        //toute les pièces d'un bien
         if($page == null){
             //show all
             $sql = "SELECT * FROM bien WHERE";

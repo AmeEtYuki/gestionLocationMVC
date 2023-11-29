@@ -34,6 +34,7 @@ class vue{
     }
     public function pageInscription($message) {
         $this->entete();
+        
         if(count($message) != 0) {
             echo "<div class='errList'>";
             for($i = 0; count($message) > $i; $i++) {
@@ -58,7 +59,7 @@ class vue{
     public function pageBien($infos, $message = null){
         if($message==null){
             //on affiche le bien
-            
+
         } else {
             foreach($message as $error){
                 //on echo dans un truc rouge warning

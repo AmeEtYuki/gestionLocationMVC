@@ -49,7 +49,6 @@ class controller {
                 (new vue)->pageInscription($errors);
             }
             
-            
         } else {
             (new vue)->pageInscription();
         }
@@ -64,14 +63,16 @@ class controller {
             $errors=[];
             if($login == "") { $errors[] = "Champ nom d'utilisateur / email vide.";  }
             if($mdp == "") { $errors[]="Champ mot de passe vide"; }
+        }
     }
+
     public function deconnexion(){
         session_destroy();
         (new vue)->accueil();
     }
 
     public function showBien(){
-        //get id du bien
+        //en get id du bien
         $errors=[];
         if(isset($_GET["idBien"])){
             if(is_numeric($_GET["idBien"])){
@@ -81,9 +82,8 @@ class controller {
                     // 404 ?
                 } else {
                     //on affiche tout
-                    
-                }
 
+                }
             } else {
                 //redirect vers accueil ?
                 $errors[] = "idBien n'est pas un nombre !";
