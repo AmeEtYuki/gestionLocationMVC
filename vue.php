@@ -53,5 +53,17 @@ class vue{
         <?php
         $this->pied();
     }
+
+
+    public function pageBien($infos, $message = null){
+        if($message==null){
+            //on affiche le bien
+            
+        } else {
+            foreach($message as $error){
+                //on echo dans un truc rouge warning
+            }
+        }
+    }
 }
 ?>

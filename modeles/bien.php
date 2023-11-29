@@ -2,10 +2,10 @@
 class bien {
     private $pdo;
     function __construct() {
-        $this->pdo = new \PDO("mysql:host=localhost;dbname=tpjson1;charset=utf8","root","");
+        $this->pdo = getPDO();
     }
 
-    function getInfosBien($IdBien){
+    public function getInfosBien($IdBien){
         $sql = "SELECT * FROM bien WHERE id = :id";
         $req = $this->pdo->prepare($sql);
         $req->bindParam(':id', $idBien , PDO::PARAM_INT);
@@ -13,7 +13,7 @@ class bien {
         return $req->fetch(PDO::FETCH_ASSOC);  
     }
 
-    function getAllBiens($page){
+    public function getAllBiens($page){
         if($page == null){
             //show all
             $sql = "SELECT * FROM bien WHERE";

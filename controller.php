@@ -57,9 +57,25 @@ class controller {
         //get id du bien
         $errors=[];
         if(isset($_GET["idBien"])){
-            $id = $_GET["idBien"];
-            
+            if(is_numeric($_GET["idBien"])){
+                $infos = (new bien)->getInfosBien($_GET["idBien"]);
+                if($infos==false){
+                    $errors[] = "Ce bien n'existe pas";
+                    // 404 ?
+                } else {
+                    //on affiche tout
+                    
+                }
+
+            } else {
+                //redirect vers accueil ?
+                $errors[] = "idBien n'est pas un nombre !";
+            }  
+        } else {
+            //redirect vers accueil ?
+            $errors[] = "Il y a une erreur sur votre lien, il manque la propriété idBien !";
         }
+        var_dump($errors);
     }
 }
 ?>
