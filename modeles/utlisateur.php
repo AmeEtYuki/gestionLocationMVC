@@ -15,5 +15,5 @@ class utilisateur {
     public function inscriptionUtilisateur($email, $password) {
         
     }
-    
+
 }
