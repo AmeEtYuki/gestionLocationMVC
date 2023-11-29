@@ -15,7 +15,7 @@ class controller {
             //protection anti champ null (postman)
             $mdp1 = (isset($_POST["password"]))?$_POST["password"]:"";
             $mdp2 = (isset($_POST["password2"]))?$_POST["password2"]:"";
-            $email = (isset($_POST["email"]))?$_POST["email"]:"";
+            $email = (isset($_POST["login"]))?$_POST["login"]:"";
             $errors=[];
             if($mdp1 == "") {
                 $errors[]="Champ mot de passe 1 vide.";
@@ -24,7 +24,7 @@ class controller {
                 $errors[]="Champ mot de passe 2 vide.";
             }
             if($email == "") {
-                $errors[]="Champ email vide.";
+                $errors[]="Champ utulisateur vide.";
             }
             if ($mdp1 != $mdp2) {
                 $errors[]="Les deux mots de passes ne correspondent pas";
@@ -38,14 +38,14 @@ class controller {
             $majuscules_minimum = 3;
 
             if (!(
-                strlen($mdp) >= $longueur_minimale &&
-                preg_match('/[^\w\d]/', $mdp) >= $caractere_special_minimum &&
-                preg_match_all('/\d/', $mdp) >= $chiffres_minimum &&
-                preg_match_all('/[A-Z]/', $mdp) >= $majuscules_minimum
+                strlen($mdp1) >= $longueur_minimale &&
+                preg_match('/[^\w\d]/', $mdp1) >= $caractere_special_minimum &&
+                preg_match_all('/\d/', $mdp1) >= $chiffres_minimum &&
+                preg_match_all('/[A-Z]/', $mdp1) >= $majuscules_minimum
             )) {$errors[]="Erreurs, le mot de passe ne corresponds pas au critères minimums.";}
             //var_dump($errors);
             if(count($errors) == 0) {
-                if((new utilisateur)->inscriptionUtilisateur($email,$mdp1) == "ok") {
+                if((new utilisateur)->inscriptionUtilisateur($email,$mdp1, htmlspecialchars($_POST["Nom"]), htmlspecialchars($_POST["Prenom"]))) {
                     (new vue)->accueil();
                 } else {
                     $errors[]="Une erreur semble être survenue de nôtre côté. Veuillez nous exuser de la gêne occasionné.";
@@ -67,7 +67,7 @@ class controller {
             $mdp = (isset($_POST["motdepasse"]))?$_POST["motdepasse"]:"";
             $login = (isset($_POST["login"]))?$_POST["login"]:"";
             $errors=[];
-            if($login == "") { $errors[] = "Champ nom d'utilisateur / email vide.";  }
+            if($login == "") { $errors[] = "Champ email vide.";  }
             if($mdp == "") { $errors[]="Champ mot de passe vide"; }
             if(sizeof($errors) == 0) {
                 (new utilisateur)->connexion();
@@ -75,9 +75,8 @@ class controller {
                 (new vue)->connexion($errors);
             }
             //obtenirPage(numPage, nbLignes)
-
+        }
     }
-}
     public function deconnexion(){
         session_destroy();
         (new vue)->accueil();

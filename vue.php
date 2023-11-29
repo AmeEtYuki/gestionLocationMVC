@@ -49,12 +49,13 @@ class vue{
         } 
         
         ?>
-        <?=($message != null)?$message."<br>":"";?>
         <form action="index.php?action=inscription" method="post">
-            <input type="email" name="" id=""><br>
+            <input type="text" name="login" id="" placeholder="utilisateur"><br>
             <input type="password" name="password" id="" placeholder="Votre mot de passe"><br>
             <input type="password" name="password2" id="" placeholder="Confirmez votre mot de passe"><br>
-            <input type="submit" value="" name="ok"><br>
+            <input type="text" name="Nom" id="" placeholder="Votre nom">
+            <input type="text" name="Prenom" id="" placeholder="Votre prenom"><br>
+            <input type="submit" value="" name="ok" placeholer=""><br>
         </form>
         <?php
         $this->pied();

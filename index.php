@@ -1,12 +1,13 @@
 <?php
 session_start();
-
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
 require("vue.php");
 require("controller.php");
 require("database.php");
 require("modeles/bien.php");
-
-
+require("modeles/photo.php");
+require("modeles/utilisateur.php");
 
 if(isset($_GET["action"])){
     switch ($_GET["action"]) {
