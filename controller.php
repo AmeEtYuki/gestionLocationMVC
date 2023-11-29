@@ -32,6 +32,17 @@ class controller {
             if ((new utilisateur)->utilisateurExiste($email)) {
                 $errors[]="L'utilisateur existe déjà.";
             }
+            $longueur_minimale = 12;
+            $caractere_special_minimum = 1;
+            $chiffres_minimum = 2;
+            $majuscules_minimum = 3;
+
+            if (!(
+                strlen($mdp) >= $longueur_minimale &&
+                preg_match('/[^\w\d]/', $mdp) >= $caractere_special_minimum &&
+                preg_match_all('/\d/', $mdp) >= $chiffres_minimum &&
+                preg_match_all('/[A-Z]/', $mdp) >= $majuscules_minimum
+            )) {$errors[]="Erreurs, le mot de passe ne corresponds pas au critères minimums.";}
             //var_dump($errors);
             if(count($errors) == 0) {
                 if((new utilisateur)->inscriptionUtilisateur($email,$mdp1) == "ok") {
@@ -52,6 +63,19 @@ class controller {
         
     }
 
-    public function connexion(){}
+    public function connexion(){
+        if(isset($_POST["ok"])) {
+            $mdp = (isset($_POST["motdepasse"]))?$_POST["motdepasse"]:"";
+            $login = (isset($_POST["login"]))?$_POST["login"]:"";
+            $errors=[];
+            if($login == "") { $errors[] = "Champ nom d'utilisateur / email vide.";  }
+            if($mdp == "") { $errors[]="Champ mot de passe vide"; }
+            
+            (new utilisateur)->
+
+
+        }
+            
+    }
 }
 ?>

@@ -9,6 +9,8 @@ class utilisateur {
         $prepare->execute(array(
             ":email"=>$email
         ));
+        $res = $prepare->fetch();
+        return (count($res) == 0);
     }
     public function inscriptionUtilisateur($email, $password) {
         
