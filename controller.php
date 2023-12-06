@@ -27,7 +27,7 @@ class controller {
                 $errors[]="Champ utilisateur vide.";
             }
             if ($mdp1 != $mdp2) {
-                $errors[]="Les deux mots de passes ne correspondent pas";
+                $errors[]="Les deux mots de passe ne correspondent pas";
             }
             if ((new utilisateur)->utilisateurExiste($email)) {
                 $errors[]="L'utilisateur existe déjà.";
@@ -50,7 +50,7 @@ class controller {
                     $lesBiens = (new bien)->getAllBiens($page);
                     (new vue)->accueil($lesBiens);
                 } else {
-                    $errors[]="Une erreur semble être survenue de nôtre côté. Veuillez nous exuser de la gêne occasionné.";
+                    $errors[]="Une erreur semble être survenue de nôtre côté. Veuillez nous excuser pour la gêne occasionné.";
                     (new vue)->pageInscription($errors);
                 }
             } else {
