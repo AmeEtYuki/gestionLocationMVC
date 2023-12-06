@@ -59,13 +59,17 @@ class vue{
         <?php
     }
 
-    public function accueil(){
+    public function accueil($lesBiens){
         //accueil
         $this->entete();
         ?>
         ACCUEIL
         <a href="/?action=inscription">Page inscription</a>
         <?php
+        var_dump($lesBiens);
+        foreach($lesBiens as $bien){
+            echo "<a href='/?action=showBien&idBien=".$bien["id"]."'>Beau bien</a><br>";
+        }
         $this->pied();
     }
 
@@ -77,6 +81,7 @@ class vue{
         <?php
         $this->pied();
     }
+
     public function pageInscription($message = []) {
         $this->entete();
         
@@ -105,7 +110,7 @@ class vue{
     public function pageBien($infos, $message = null){
         if($message==null){
             //on affiche le bien
-
+            var_dump($infos);
         } else {
             foreach($message as $error){
                 //on echo dans un truc rouge warning

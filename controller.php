@@ -1,7 +1,13 @@
 <?php
 class controller {
     public function accueil(){
-        (new vue)->accueil();
+        $page = (isset($_GET["page"]))?$_GET["page"]:1;
+        $lesBiens = (new bien)->getAllBiens($page);
+        if($lesBiens == null){
+            (new vue)->erreur404();
+        } else {
+            (new vue)->accueil($lesBiens);
+        }
     }
     
     public function inscription() {
@@ -87,7 +93,7 @@ class controller {
                     // 404 ?
                 } else {
                     //on affiche tout
-
+                    (new vue)->pageBien($infos);
                 }
             } else {
                 //redirect vers accueil ?

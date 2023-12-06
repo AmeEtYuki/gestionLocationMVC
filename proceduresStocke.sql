@@ -8,3 +8,19 @@ END $$
 
 
 DELIMITER ;
+
+
+
+
+
+DELIMITER $$
+
+CREATE PROCEDURE paginationBien(page INT, objetParPage INT)
+BEGIN
+    DECLARE off INT;
+    Set off = page*objetParPage-objetParPage;
+    SELECT * FROM bien LIMIT objetParPage OFFSET off ;
+END $$
+
+
+DELIMITER ;
