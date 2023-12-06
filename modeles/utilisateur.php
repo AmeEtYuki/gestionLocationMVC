@@ -19,7 +19,7 @@ class utilisateur {
         return $prepare->execute(
             array(
                 ":email"=>$email,
-                ":pssword"=>$password,
+                ":pssword"=>$hash,
                 ":nom"=>$nom,
                 ":prenom"=>$prenom
             )
