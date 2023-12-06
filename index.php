@@ -8,6 +8,7 @@ require("database.php");
 require("modeles/bien.php");
 require("modeles/photo.php");
 require("modeles/utilisateur.php");
+require("modeles/piece.php");
 
 if(isset($_GET["action"])){
     switch ($_GET["action"]) {

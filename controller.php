@@ -24,7 +24,7 @@ class controller {
                 $errors[]="Champ mot de passe 2 vide.";
             }
             if($email == "") {
-                $errors[]="Champ utulisateur vide.";
+                $errors[]="Champ utilisateur vide.";
             }
             if ($mdp1 != $mdp2) {
                 $errors[]="Les deux mots de passes ne correspondent pas";
@@ -45,8 +45,10 @@ class controller {
             )) {$errors[]="Erreurs, le mot de passe ne corresponds pas au critères minimums.";}
             //var_dump($errors);
             if(count($errors) == 0) {
-                if((new utilisateur)->inscriptionUtilisateur($email,$mdp1, htmlspecialchars($_POST["Nom"]), htmlspecialchars($_POST["Prenom"]))) {
-                    (new vue)->accueil();
+                if((new utilisateur)->inscriptionUtilisateur(htmlspecialchars($email),$mdp1, htmlspecialchars($_POST["Nom"]), htmlspecialchars($_POST["Prenom"]))) {
+                    $page = (isset($_GET["page"]))?$_GET["page"]:1;
+                    $lesBiens = (new bien)->getAllBiens($page);
+                    (new vue)->accueil($lesBiens);
                 } else {
                     $errors[]="Une erreur semble être survenue de nôtre côté. Veuillez nous exuser de la gêne occasionné.";
                     (new vue)->pageInscription($errors);
@@ -72,9 +74,11 @@ class controller {
             if(sizeof($errors) == 0) {
                 (new utilisateur)->connexion();
             } else {
-                (new vue)->connexion($errors);
+                (new vue)->pageConnexion($errors);
             }
             //obtenirPage(numPage, nbLignes)
+        } else {
+            (new vue)->pageConnexion();
         }
     }
     public function deconnexion(){

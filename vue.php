@@ -31,12 +31,12 @@ class vue{
             </a>
             <ul class="dropdown-menu">
                 <?php if(!isset($_SESSION['userID'])) { ?>
-                <li><a class="dropdown-item" href="#">Inscription</a></li>
-                <li><a class="dropdown-item" href="#">Connexion</a></li>
+                <li><a class="dropdown-item" href="?action=inscription">Inscription</a></li>
+                <li><a class="dropdown-item" href="?action=connexion">Connexion</a></li>
                 <!--<li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">Something else here</a></li>-->
                 <?php } else if ($_SESSION['usrTyp'] == 1){ ?>
-                        <li><a class="dropdown-item" href="#">Mes favoris</a></li>
+                        <!--<li><a class="dropdown-item" href="#">Mes favoris</a></li>-->
                         <li><a class="dropdown-item" href="#">Mes factures</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#">Deconnexion</a></li>
@@ -62,10 +62,6 @@ class vue{
     public function accueil($lesBiens){
         //accueil
         $this->entete();
-        ?>
-        ACCUEIL
-        <a href="/?action=inscription">Page inscription</a>
-        <?php
         var_dump($lesBiens);
         foreach($lesBiens as $bien){
             echo "<a href='/?action=showBien&idBien=".$bien["id"]."'>Beau bien</a><br>";
@@ -116,6 +112,72 @@ class vue{
                 //on echo dans un truc rouge warning
             }
         }
+    }
+
+    public function pageConnexion($message = []) {
+        $this->entete();
+        ?>
+        <style>
+            .btn-login {
+                font-size: 0.9rem;
+                letter-spacing: 0.05rem;
+                padding: 0.75rem 1rem;
+            }
+
+            .btn-google {
+                color: white !important;
+                background-color: #ea4335;
+            }
+
+            .btn-facebook {
+                color: white !important;
+                background-color: #3b5998;
+            }
+        </style>
+        <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card border-0 shadow rounded-3 my-5">
+          <div class="card-body p-4 p-sm-5">
+            <h5 class="card-title text-center mb-5 fw-light fs-5">Connexion</h5>
+            <form>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Nom d'utilisateur</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Mot de passe</label>
+              </div>
+
+              <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
+                <label class="form-check-label" for="rememberPasswordCheck">
+                    Se souvenir de moi via un cookie.
+                </label>
+              </div>
+              <div class="d-grid">
+                <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">
+                    Se connecter
+                  </button>
+              </div>
+              <?php
+              if(count($message) != 0) {
+                    echo '<hr class="my-4">';
+                    for($i = 0; count($message) > $i; $i++) {
+                        echo "<div class='alert alert-danger' role='alert'>".$message[$i]."</div>";
+                    }  
+                    
+                    } 
+                    ?>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <?php
+  $this->pied();
     }
 }
 ?>
