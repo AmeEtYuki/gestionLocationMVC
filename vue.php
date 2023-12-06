@@ -15,7 +15,7 @@ class vue{
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Acceuil</a>
+          <a class="nav-link active" aria-current="page" href="/">Accueil</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Voir les locations</a>
@@ -31,8 +31,8 @@ class vue{
             </a>
             <ul class="dropdown-menu">
                 <?php if(!isset($_SESSION['userID'])) { ?>
-                <li><a class="dropdown-item" href="#">Inscription</a></li>
-                <li><a class="dropdown-item" href="#">Connexion</a></li>
+                <li><a class="dropdown-item" href="/?action=inscription">Inscription</a></li>
+                <li><a class="dropdown-item" href="/?action=connexion">Connexion</a></li>
                 <!--<li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">Something else here</a></li>-->
                 <?php } else if ($_SESSION['usrTyp'] == 1){ ?>
@@ -55,7 +55,53 @@ class vue{
     private function pied(){
         //footer
         ?> 
-        footer
+<div class="container fixed-bottom">
+  <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
+    <div class="col mb-3">
+      <a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+      <p class="text-body-secondary">SIO2© 2023</p>
+    </div>
+
+    <div class="col mb-3">
+
+    </div>
+
+    <div class="col mb-3">
+      <h5>Section</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+      </ul>
+    </div>
+
+    <div class="col mb-3">
+      <h5>Section</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+      </ul>
+    </div>
+
+    <div class="col mb-3">
+      <h5>Section</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+      </ul>
+    </div>
+  </footer>
+</div>
         <?php
     }
 
@@ -63,13 +109,24 @@ class vue{
         //accueil
         $this->entete();
         ?>
-        ACCUEIL
-        <a href="/?action=inscription">Page inscription</a>
+        ICI PEUT ETRE PRESENTATION DU PROJET
+        <div class="d-flex flex-wrap align-items-center justify-content-center" >
         <?php
-        var_dump($lesBiens);
+        //var_dump($lesBiens);
         foreach($lesBiens as $bien){
-            echo "<a href='/?action=showBien&idBien=".$bien["id"]."'>Beau bien</a><br>";
+            
+            ?>
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top">
+                <div class="card-body">
+                    <p class="card-text"><?php $bien["description"] ?></p>
+                    <?php echo "<a href='/?action=showBien&idBien=".$bien["id"]."' class='btn btn-primary'>Consulter</a><br>"; ?>
+                </div>
+            </div>
+            
+            <?php
         }
+        echo"</div>";
         $this->pied();
     }
 
@@ -94,14 +151,34 @@ class vue{
         } 
         
         ?>
-        <form action="index.php?action=inscription" method="post">
-            <input type="text" name="login" id="" placeholder="utilisateur"><br>
-            <input type="password" name="password" id="" placeholder="Votre mot de passe"><br>
-            <input type="password" name="password2" id="" placeholder="Confirmez votre mot de passe"><br>
-            <input type="text" name="Nom" id="" placeholder="Votre nom">
-            <input type="text" name="Prenom" id="" placeholder="Votre prenom"><br>
-            <input type="submit" value="" name="ok" placeholer=""><br>
+        <div class="d-flex justify-content-center align-items-center">
+            
+        <form action="index.php?action=inscription" method="post" style="position: absolute; top: 50%;
+  left: 50%;
+  transform: translate(-50%, -70%); justify-content: center;">
+  <h3>Inscription</h3>
+            <div class="form-group">
+                <label for="login" class="form-label">Login</label><br>
+                <input type="text" name="login" id="login" placeholder="Votre login">
+            </div>
+            <div class="form-group">
+                <label for="pass1" class="form-label">Mot de passe</label><br>
+                <input type="password" name="password" id="pass1" placeholder="Votre mot de passe"><br>
+                <small class="form-text text-muted">Au moins 12 caractères, avec majuscule, minuscule, chiffre et caractère spécial</small>
+            </div>
+            <div class="form-group">
+                <label for="pass2" class="form-label">Confirmation du mot de passe</label><br>
+                <input type="password" name="password2" id="pass2" placeholder="Confirmez votre mot de passe">
+            </div>
+            <div class="form-group">
+                <label for="nom" class="form-label">Nom</label><br>
+                <input type="text" name="Nom" id="nom" placeholder="Votre nom">
+                <label for="prenom" class="form-label">Prénom</label><br>
+                <input type="text" name="Prenom" id="prenom" placeholder="Votre prenom">
+            </div>
+            <input type="submit" name="ok" value="Inscription">
         </form>
+        </div>
         <?php
         $this->pied();
     }

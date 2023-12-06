@@ -24,10 +24,10 @@ class controller {
                 $errors[]="Champ mot de passe 2 vide.";
             }
             if($email == "") {
-                $errors[]="Champ utulisateur vide.";
+                $errors[]="Champ email vide.";
             }
             if ($mdp1 != $mdp2) {
-                $errors[]="Les deux mots de passes ne correspondent pas";
+                $errors[]="Les deux mots de passe ne correspondent pas";
             }
             if ((new utilisateur)->utilisateurExiste($email)) {
                 $errors[]="L'utilisateur existe déjà.";
@@ -48,7 +48,7 @@ class controller {
                 if((new utilisateur)->inscriptionUtilisateur($email,$mdp1, htmlspecialchars($_POST["Nom"]), htmlspecialchars($_POST["Prenom"]))) {
                     (new vue)->accueil();
                 } else {
-                    $errors[]="Une erreur semble être survenue de nôtre côté. Veuillez nous exuser de la gêne occasionné.";
+                    $errors[]="Une erreur semble être survenue de nôtre côté. Veuillez nous excuser pour la gêne occasionné.";
                     (new vue)->pageInscription($errors);
                 }
             } else {
