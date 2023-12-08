@@ -72,7 +72,20 @@ class controller {
             if($login == "") { $errors[] = "Champ email vide.";  }
             if($mdp == "") { $errors[]="Champ mot de passe vide"; }
             if(sizeof($errors) == 0) {
-                (new utilisateur)->connexion();
+                $resp = (new utilisateur)->connexion($login, $mdp);
+                switch ($resp) {
+                    case 0:
+                        (new controller)->accueil();
+                        break;
+                    case 1:
+                        (new vue)->pageConnexion(["Mot de passe/Utilisateur erronné."]);
+                        break;
+                    case 2:
+                        (new vue)->pageConnexion(["L'utilisateur n'existe pas."]);
+                        break;
+                    default:
+                        break;
+                }
             } else {
                 (new vue)->pageConnexion($errors);
             }
@@ -83,7 +96,7 @@ class controller {
     }
     public function deconnexion(){
         session_destroy();
-        (new vue)->accueil();
+        (new controller)->accueil();
     }
 
     public function showBien(){

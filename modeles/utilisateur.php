@@ -26,7 +26,26 @@ class utilisateur {
             );
     }
     public function connexion($email, $password) {
-        //$prepare=$this->pdo->prepare("")
+        $prepare=$this->pdo->prepare("SELECT * FROM `user` WHERE `login` = :l");
+        $prepare->execute(array(
+            ":l"=>$email
+        ));
+        $res = $prepare->fetch();
+        // 0 = ok 1 = mdp/user erroné 2 = il existe pas fréro.
+        if(!(count($res) == 0)) {
+            if(password_verify($password , $res["password"])) {
+                $_SESSION['userID'] = $res['id'];
+                $_SESSION['userName'] = $res['login'];
+                $_SESSION['usrType'] = $res['type'];
+                return 0;
+                //userID    userName     usrTyp
+                
+            } else {
+                return 1;
+            }
+        } else {
+            return 2;
+        }
     }
 
 }
