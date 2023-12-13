@@ -6,7 +6,7 @@ class controller {
         if($lesBiens == null){
             (new vue)->erreur404();
         } else {
-            (new vue)->accueil($lesBiens);
+            (new vue)->accueil($lesBiens,$page,(new bien)->getMaxPages());
         }
     }
     

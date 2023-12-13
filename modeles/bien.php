@@ -38,5 +38,13 @@ class bien {
             return $req->fetchAll(PDO::FETCH_ASSOC);  
         }
     }
+
+    public function getMaxPages(){
+        $sql = "CALL maxPages(5);";
+        $req = $this->pdo->prepare($sql);
+        $req->execute();
+        $res = $req->fetch(PDO::FETCH_ASSOC);
+        return $res["nb"];  
+    }
 }
 ?>
