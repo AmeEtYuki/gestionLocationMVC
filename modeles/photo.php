@@ -5,8 +5,11 @@ class photo {
         $this->pdo = getPDO();
     }
     function photoPresentBien($idb) {
-        $leBien = $idb;
-        
+        $prepare = $this->pdo->prepare("SELECT * FROM photo WHERE id_bien = :id");
+        $prepare->execute(array(
+            ":id"=>$idb
+        ));
+        return $prepare->fetchAll(); 
     }
 }
 ?>
