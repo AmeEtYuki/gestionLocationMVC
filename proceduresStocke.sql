@@ -70,3 +70,19 @@ BEGIN
 END$$    
 
 DELIMITER ;
+
+
+//////////////////////////////////
+
+DROP PROCEDURE maxPages;
+DELIMITER $$
+
+CREATE PROCEDURE maxPages(objetParPage INT)
+BEGIN
+    DECLARE total INT;
+    SELECT COUNT(*) FROM bien INTO total;
+    SELECT CEIL(total/objetParPage) as nb;
+END $$
+
+
+DELIMITER ;

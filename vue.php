@@ -14,11 +14,11 @@ class vue {
         <?php
     }
 
-    public function accueil($lesBiens){
+    public function accueil($lesBiens, $page, $pages){
         //accueil
         $this->entete();
-      
-        include("./vues/acceuil.php");
+        
+        include("./vues/accueil.php");
 
         $this->pied();
     }
