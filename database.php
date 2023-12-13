@@ -7,6 +7,8 @@
     $dbport = $data["dbport"];
     $dsn = "mysql:host=".$dbhost.";dbname=".$dbdatabase;
 
+    //well no, it's not stored here anymore :)
+
     function getPDO() {
         global $dsn;
         global $dbuser;
