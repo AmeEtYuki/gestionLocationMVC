@@ -13,6 +13,14 @@ class bien {
         return $req->fetch(PDO::FETCH_ASSOC);  
     }
 
+    public function getInfoFromUser($idUser){
+        $sql = "SELECT * FROM bien WHERE id_user = :id";
+        $req = $this->pdo->prepare($sql);
+        $req->bindParam(':id', $idUser , PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC);  
+    }
+
     public function getNombrePieceETSurfaceBien($idBien){
         $sql = "CALL getNombrePieceETSurface( :id )";
         $req = $this->pdo->prepare($sql);
@@ -24,7 +32,7 @@ class bien {
     public function getAllBiens($page){
         if($page == null){
             //show all
-            $sql = "SELECT * FROM bien WHERE";
+            $sql = "SELECT * FROM bien";
             $req = $this->pdo->prepare($sql);
             $req->execute();
             return $req->fetch(PDO::FETCH_ASSOC);  

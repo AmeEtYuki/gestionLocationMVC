@@ -10,7 +10,7 @@ END $$
 DELIMITER ;
 
 
-//////////////////////////////
+--------------------------------------------
 
 
 DELIMITER $$
@@ -26,7 +26,7 @@ END $$
 DELIMITER ;
 
 
-///////////////////////////////
+--------------------------------------------
 
 DELIMITER $$
 
@@ -42,7 +42,7 @@ END $$
 DELIMITER ;
 
 
-/////////////////////////////
+--------------------------------------------
 
 
 DROP TRIGGER IF EXISTS T_periodereserve_before_insert;
@@ -72,9 +72,9 @@ END$$
 DELIMITER ;
 
 
-//////////////////////////////////
+--------------------------------------------
 
-DROP PROCEDURE maxPages;
+DROP PROCEDURE IF EXISTS maxPages;
 DELIMITER $$
 
 CREATE PROCEDURE maxPages(objetParPage INT)
@@ -86,3 +86,6 @@ END $$
 
 
 DELIMITER ;
+
+
+--------------------------------------------
