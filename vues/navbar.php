@@ -38,13 +38,20 @@
                 <!--<li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">Something else here</a></li>-->
                 <?php } else {
-                            if ($_SESSION['usrType'] == "Locataire") {
+                  $isHote = ($_SESSION['usrType'] == "Hote");
+                  $isManager = ($_SESSION['usrType'] == "Hote");
+                  $isManager = ($_SESSION['usrType'] == "Manager");
+                            if ($isHote || $isManager) {
                               ?>
                         <!--<li><a class="dropdown-item" href="#">Mes favoris</a></li>-->
-                        <li><a class="dropdown-item" href="">Mes factures</a></li>
+                        <li><a class="dropdown-item" href="?action=propreBien">Mes biens</a></li>
                     <?php 
+                    } if ($isManager){
+                      echo '<li><a class="dropdown-item" href="?action=gestionSite">Gestion</a></li>';
                     }
+                    
                     ?>
+                    <li><a class="dropdown-item" href="">Mes factures</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="?action=deconnexion">Deconnexion</a></li>
                     <?php 

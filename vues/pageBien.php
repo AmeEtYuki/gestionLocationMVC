@@ -13,10 +13,13 @@ if($message==null){
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
+  
   <div class="carousel-inner">
+    <?php foreach ( $re=(new photo)->photoPresentBien($bien["id"]) as $l ) { ?>
     <div class="carousel-item active">
-      <img src="https://as1.ftcdn.net/v2/jpg/05/66/26/98/1000_F_566269813_8VisUzV5qqdN7nQ7De4FcVEVxnRuKh2E.jpg" class="d-block w-100" alt="...">
+      <img src="/images/<?=$l[1]?>" class="d-block w-100" alt="...">
     </div>
+    <?php } ?>
     <div class="carousel-item">
       <img src="https://t4.ftcdn.net/jpg/01/66/10/03/360_F_166100342_KbTGIRrnrlwGDZSXSMpH3zfn2dxyTKae.jpg" class="d-block w-100" alt="...">
     </div>
