@@ -112,7 +112,11 @@ class controller {
                     // 404 ?
                 } else {
                     //on affiche tout
-                    (new vue)->pageBien($infos);
+                    $photos = (new photo)->photoPresentBien($_GET["idBien"]);
+                    $bien = $_GET['idBien'];
+                    (new vue)->pageBien(
+                        $bien, 
+                        $photos);
                 }
             } else {
                 //redirect vers accueil ?
@@ -122,7 +126,7 @@ class controller {
             //redirect vers accueil ?
             $errors[] = "Il y a une erreur sur votre lien, il manque la propriété idBien !";
         }
-        var_dump($errors);
+        //var_dump($errors);
     }
 }
 ?>
