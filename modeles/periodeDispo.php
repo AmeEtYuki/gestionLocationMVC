@@ -18,6 +18,10 @@ class periodeDispo {
         //l faudra check si x peut modifier y bien
     }
 
+    public function deletePeriodeDispo($id){
+        //l faudra check si x peut modifier y bien
+    }
+
     /*
     TODO :
     creerPeriode(dateDeb,dateFin,idUser,idBien) // il faut check s'il n'y a pas déjà une période pour ce bien à ces dates
