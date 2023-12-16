@@ -15,7 +15,7 @@ if($message==null){
   </div>
   
   <div class="carousel-inner">
-    <?php foreach ( $re=(new photo)->photoPresentBien($bien["id"]) as $l ) { ?>
+    <?php foreach ( $re=(new photo)->photoPresentBien($infos["id"]) as $l ) { ?>
     <div class="carousel-item active">
       <img src="/images/<?=$l[1]?>" class="d-block w-100" alt="...">
     </div>

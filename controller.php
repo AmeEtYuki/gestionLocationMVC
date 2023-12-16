@@ -48,7 +48,7 @@ class controller {
                 if((new utilisateur)->inscriptionUtilisateur(htmlspecialchars($email),$mdp1, htmlspecialchars($_POST["Nom"]), htmlspecialchars($_POST["Prenom"]))) {
                     $page = (isset($_GET["page"]))?$_GET["page"]:1;
                     $lesBiens = (new bien)->getAllBiens($page);
-                    (new vue)->accueil($lesBiens);
+                    (new vue)->accueil($lesBiens,$page,(new bien)->getMaxPages());
                 } else {
                     $errors[]="Une erreur semble être survenue de nôtre côté. Veuillez nous excuser pour la gêne occasionné.";
                     (new vue)->pageInscription($errors);
@@ -75,7 +75,8 @@ class controller {
                 $resp = (new utilisateur)->connexion($login, $mdp);
                 switch ($resp) {
                     case 0:
-                        (new controller)->accueil();
+                        $lesBiens = (new bien)->getAllBiens(1);
+                        (new controller)->accueil($lesBiens,1,(new bien)->getMaxPages());
                         break;
                     case 1:
                         (new vue)->pageConnexion(["Mot de passe/Utilisateur erronné."]);
@@ -96,7 +97,8 @@ class controller {
     }
     public function deconnexion(){
         session_destroy();
-        (new controller)->accueil();
+        $lesBiens = (new bien)->getAllBiens(1);
+        (new controller)->accueil($lesBiens,1,(new bien)->getMaxPages());
     }
 
     public function showBien(){
