@@ -112,11 +112,24 @@ class controller {
                     // 404 ?
                 } else {
                     //on affiche tout
+
+                    $periodeDispo = (new periodeDispo)->getPeriodeDispoFromBien($_GET['idBien']);
+                    $periodeReserve = array();
+                    foreach($periodeDispo as $p){
+                        $pr = (new periodeReserve)->getPeriodeReserveFromPeriodeDispo($p["id"]);
+                        if(!empty($pr)){
+                            $periodeReserve[] = $pr;
+                        }
+                    }
+
                     $photos = (new photo)->photoPresentBien($_GET["idBien"]);
                     $bien = $_GET['idBien'];
-                    (new vue)->pageBien(
-                        $bien, 
-                        $photos);
+
+                    (new vue)->pageBien( $bien, 
+                        $photos,
+                        $periodeDispo,
+                        $periodeReserve      
+                    );
                 }
             } else {
                 //redirect vers accueil ?

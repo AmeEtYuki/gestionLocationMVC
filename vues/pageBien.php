@@ -3,7 +3,7 @@ if($message==null){
             //on affiche le bien
             //var_dump($infos);
             ?>
-
+  
           <div class="container">
               <div class="row">
                   <div class="col-6">
@@ -54,10 +54,35 @@ if($message==null){
               </div>-->
             </div>
           </div>
+        <br>
+          <input type="text"  id="datepickerrangestart">
+        <input type="text"  id="datepickerrangeend">
+        <script>
 
+          $(document).ready(function() {
 
+            // assuming the controls you want to attach the plugin to
+            // have the "datepicker" class set
+            $('#datepickerrangestart').Zebra_DatePicker({
+                direction: true,
+                pair: $('#datepickerrangeend')
+            });
+            $('#datepickerrangeend').Zebra_DatePicker({
+                direction: 1
+            });
+          });
 
+            
+
+            
+            
+          
+        </script>
+        
             <?php
+            
+            var_dump($periodeDispo);
+            var_dump($periodeReserve);
         } else {
             foreach($message as $error){
               ?>
