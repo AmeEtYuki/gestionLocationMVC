@@ -110,9 +110,14 @@ class vue {
   <?php
   $this->pied();
     }
-    function gererBiens() {
+    function gererBiens($idBien,$periodesLibreBien) {
       $this->entete();
-      include("vues/gererBien.php");
+      include("./vues/gererBien.php");
+      $this->pied();
+    }
+    function voirPropreBiens($lesBiens, $page, $pages) {
+      $this->entete();
+      include("./vues/mesBiens.php");
       $this->pied();
     }
 } 
