@@ -9,6 +9,8 @@ require("modeles/bien.php");
 require("modeles/photo.php");
 require("modeles/utilisateur.php");
 require("modeles/piece.php");
+require("modeles/periodeDispo.php");
+require("modeles/periodeReserve.php");
 
 if(isset($_GET["action"])){
     switch ($_GET["action"]) {
