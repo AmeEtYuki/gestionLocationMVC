@@ -33,6 +33,16 @@ class periodeDispo {
         return $req->execute();
     }
 
+    public function getPeriodeDispoFromDates($dateDebut,$dateFin){
+        //permet de récup le prix aussi !
+        $sql = "SELECT * FROM periodedispo WHERE :dateDeb BETWEEN dateDebut and dateFin AND :dateFin BETWEEN dateDebut and dateFin";
+        $req = $this->pdo->prepare($sql);
+        $req->bindParam(':dateDeb', $dateDebut , PDO::PARAM_STR);   
+        $req->bindParam(':dateFin', $dateFin , PDO::PARAM_STR);   
+        $req->execute();
+        return $req->fetch(PDO::FETCH_ASSOC); 
+    }
+
     /*
     TODO :
     creerPeriode(dateDeb,dateFin,idUser,idBien) // il faut check s'il n'y a pas déjà une période pour ce bien à ces dates
