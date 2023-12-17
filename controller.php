@@ -113,7 +113,7 @@ class controller {
                     //on affiche tout
 
                     $periodeDispo = (new periodeDispo)->getPeriodeDispoFromBien($_GET['idBien']);
-                    $periodeReserve = array();
+                    $periodeReserve = [];
                     foreach($periodeDispo as $p){
                         $pr = (new periodeReserve)->getPeriodeReserveFromPeriodeDispo($p["id"]);
                         if(!empty($pr)){

@@ -25,7 +25,7 @@ class periodeReserve {
     }
 
     public function getPeriodeReserveFromPeriodeDispo($idPeriode){
-        $sql = "SELECT * FROM periodereserve WHERE id_periodeDispo = :id";
+        $sql = "SELECT * FROM periodereserve WHERE id_periodeDispo = :id ORDER BY dateDebut ASC";
         $req = $this->pdo->prepare($sql);
         $req->bindParam(':id', $idPeriode , PDO::PARAM_INT);
         $req->execute();

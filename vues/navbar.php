@@ -1,6 +1,6 @@
        
         
-        <body class="d-flex flex-column min-vh-100" data-bs-theme="dark">
+        <body class="d-flex flex-column min-vh-100">
           <?php include("import.html"); 
             $usrType = (isset($_SESSION['usrType']))?$_SESSION['usrType']:"";
           ?>                     
