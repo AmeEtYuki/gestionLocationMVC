@@ -5,12 +5,12 @@ ini_set('display_errors', 'On');
 require("vue.php");
 require("controller.php");
 require("database.php");
-require("modeles/bien.php");
-require("modeles/photo.php");
-require("modeles/utilisateur.php");
-require("modeles/piece.php");
-require("modeles/periodeDispo.php");
-require("modeles/periodeReserve.php");
+//import de tout les modeles. 
+foreach ( glob( './modeles' . '/*.php' ) as $file ) {require( $file );}
+if(isset($_SESSION['user'])) {
+    (new controller)->checkupUser();
+}
+
 
 if(isset($_GET["action"])){
     switch ($_GET["action"]) {
@@ -33,6 +33,9 @@ if(isset($_GET["action"])){
         case 'deconnexion':
             #page d'accueil
             (new controller)->deconnexion();
+            break;
+        case 'gererBiens':
+            (new controller)->gererBiens();
             break;
         default:
             #mauvaise action

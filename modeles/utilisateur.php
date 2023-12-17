@@ -48,4 +48,20 @@ class utilisateur {
         }
     }
 
+    public function checkUserSession() {
+        global $pdo;
+        $prepare=$this->pdo->prepare("SELECT * FROM `user` WHERE `id` = :l");
+        $prepare->execute(array(
+            ":l"=>$_SESSION['userID']
+        ));
+        if(!(count($res) == 0)) {
+                $_SESSION['userID'] = $res['id'];
+                $_SESSION['userName'] = $res['login'];
+                $_SESSION['usrType'] = $res['type'];
+                //userID    userName     usrTyp
+        } else {
+            session_destroy();
+        }
+    }
+
 }

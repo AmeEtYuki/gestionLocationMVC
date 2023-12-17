@@ -7,7 +7,7 @@ class periodeDispo {
 
 
     public function getPeriodeDispoFromBien($idBien){
-        $sql = "SELECT * FROM periodedispo WHERE id_bien = :id";
+        $sql = "SELECT * FROM periodeDispo WHERE id_bien = :id";
         $req = $this->pdo->prepare($sql);
         $req->bindParam(':id', $idBien , PDO::PARAM_INT);
         $req->execute();
@@ -16,7 +16,7 @@ class periodeDispo {
 
     public function creerPeriodeDispo($idBien, $dateDeb, $dateFin, $prix){
         //l faudra check si x peut modifier y bien
-        $sql = "INSERT INTO periodedispo (id_bien,dateDebut,dateFin,prixJour) VALUES ( :idBien , :dateDeb , :dateFin , :prix )";
+        $sql = "INSERT INTO periodeDispo (id_bien,dateDebut,dateFin,prixJour) VALUES ( :idBien , :dateDeb , :dateFin , :prix )";
         $req = $this->pdo->prepare($sql);
         $req->bindParam(':idBien', $idBien , PDO::PARAM_INT);
         $req->bindParam(':dateDeb', $dateDeb , PDO::PARAM_STR);
@@ -27,7 +27,7 @@ class periodeDispo {
 
     public function deletePeriodeDispo($id){
         //l faudra check si x peut modifier y bien
-        $sql = "DELETE FROM periodedispo WHERE id = :id";
+        $sql = "DELETE FROM periodeDispo WHERE id = :id";
         $req = $this->pdo->prepare($sql);
         $req->bindParam(':id', $id , PDO::PARAM_INT);   
         return $req->execute();

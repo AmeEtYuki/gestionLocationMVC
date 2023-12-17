@@ -97,8 +97,7 @@ class controller {
     }
     public function deconnexion(){
         session_destroy();
-        $lesBiens = (new bien)->getAllBiens(1);
-        (new controller)->accueil($lesBiens,1,(new bien)->getMaxPages());
+        header('Location: /');
     }
 
     public function showBien(){
@@ -140,6 +139,16 @@ class controller {
             $errors[] = "Il y a une erreur sur votre lien, il manque la propriété idBien !";
         }
         //var_dump($errors);
+    }
+    function checkupUser() {
+        $_SESSION['nbR'] = (isset($_SESSION['nbR']))?$_SESSION['nbR']+1:1;
+        if (!(isset($_SESSION['nbR']) || $_SESSION['nbR'] < 10)) { $refresh = 'true'; $_SESSION['nbR'] = 0;}
+        if ($refresh != null) {
+            (new utilisateur)->checkUserSession();
+        }
+    }
+    function gererBiens() {
+        (new vue)->gererBiens();
     }
 }
 ?>

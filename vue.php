@@ -8,10 +8,7 @@ class vue {
     private function pied(){
         //footer
         //fixed-bottom
-        include("./vues/footer.php")
-        ?> 
-
-        <?php
+        include("./vues/footer.php");
     }
 
     public function accueil($lesBiens, $page, $pages){
@@ -112,6 +109,11 @@ class vue {
   </div>
   <?php
   $this->pied();
+    }
+    function gererBiens() {
+      $this->entete();
+      include("vues/gererBien.php");
+      $this->pied();
     }
 } 
 ?>

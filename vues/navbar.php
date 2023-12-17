@@ -1,7 +1,9 @@
        
         
-        <body class="d-flex flex-column min-vh-100">
-          <?php include("import.html"); ?>                     
+        <body class="d-flex flex-column min-vh-100" data-bs-theme="dark">
+          <?php include("import.html"); 
+            $usrType = (isset($_SESSION['usrType']))?$_SESSION['usrType']:"";
+          ?>                     
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">ImmoMVC</a>
@@ -13,9 +15,14 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/">Accueil</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="?action=showBien">Voir les locations</a>
-        </li>
+        <?php if (($usrType == "Hote")) { ?>
+          <!-- Boutons spécifique de la navbar aux Hotes.-->
+            <li class="nav-item">
+              <a class="nav-link" href="?action=gererBiens">Voir mes biens</a>
+            </li>
+          
+        <?php } ?>
+        
         
         <li class="nav-item">
           <a class="nav-link disabled" aria-disabled="true">Chercher</a>
@@ -38,18 +45,14 @@
                 <!--<li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">Something else here</a></li>-->
                 <?php } else {
-                  $isHote = ($_SESSION['usrType'] == "Hote");
-                  $isManager = ($_SESSION['usrType'] == "Hote");
-                  $isManager = ($_SESSION['usrType'] == "Manager");
-                            if ($isHote || $isManager) {
+                            if (($_SESSION['usrType'] == "Hote")) {
                               ?>
                         <!--<li><a class="dropdown-item" href="#">Mes favoris</a></li>-->
-                        <li><a class="dropdown-item" href="?action=propreBien">Mes biens</a></li>
+                        <li><a class="dropdown-item" href="?action=gererBien">Mes biens</a></li>
+                        <li><a class="dropdown-item" href="?action=gestionSite">Gestion</a></li>
                     <?php 
-                    } if ($isManager){
-                      echo '<li><a class="dropdown-item" href="?action=gestionSite">Gestion</a></li>';
-                    }
-                    
+                    } 
+        
                     ?>
                     <li><a class="dropdown-item" href="">Mes factures</a></li>
                     <li><hr class="dropdown-divider"></li>
