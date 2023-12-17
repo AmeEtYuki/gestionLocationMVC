@@ -55,31 +55,87 @@ if($message==null){
             </div>
           </div>
         <br>
-          <input type="text"  id="datepickerrangestart">
-        <input type="text"  id="datepickerrangeend">
-        <script>
-
-          $(document).ready(function() {
-
-            // assuming the controls you want to attach the plugin to
-            // have the "datepicker" class set
-            $('#datepickerrangestart').Zebra_DatePicker({
-                direction: true,
-                pair: $('#datepickerrangeend')
-            });
-            $('#datepickerrangeend').Zebra_DatePicker({
-                direction: 1
-            });
-          });
-
-            
-
-            
-            
-          
-        </script>
         
             <?php
+           
+            if(isset($_SESSION['userID'])){
+              function parseRangeDate($dateFirst, $dateEnd){
+                //$date should be something like '2012-08-01'
+                //pour les periodes reserve
+                $splitedFirst = explode("-", $dateFirst);
+                $splitedEnd = explode("-", $dateEnd);
+                $range = $splitedFirst[2]."-".$splitedEnd[2]." ".$splitedFirst[1]."-".$splitedEnd[1]." ".$splitedFirst[0]."-".$splitedEnd[0];
+                //returns '01-02 08-08 2012-2012'
+                return $range;
+              }
+
+
+              
+
+              echo parseRangeDate('2012-08-01', '2012-08-02');
+
+              if(!empty($periodeDispo)){
+                /*
+                $script = '<script> $(document).ready(function() { 
+                        direction: [';
+                
+                        foreach($periodeDispo as $pd){
+
+                        }
+                        
+                        
+                        echo '],
+                        disabled_dates: ["01-02 08-08 2012-2012", "08-12 08-08 2012-2012"],
+                        pair: $("#datepickerrangeend")
+                    });
+                  
+                  
+                  
+                  ';
+                echo '</script>';
+                    */
+                ?>
+                <script>
+            
+                  //on disable les dates re'serv, on disable toute les dates, on allow les dates des periodes,  on met en direction 1
+                  //      enabled_dates: ['08-12 8 2012']
+                  // ,'01-02 08-08 2012-2012', '08-12 08-08 2012-2012' 
+                  
+                  $(document).ready(function() {
+
+                    
+                    //direction :[datePluspeitte, dateplusgrande]
+                    //disabled dates: toutes les periodes reservé, et les periodes entre les periodes dispo
+                    $('#datepickerrangestart').Zebra_DatePicker({
+                        direction: ['2012-08-01','2012-09-12'],
+                        pair: $('#datepickerrangeend'),
+                        enabled_dates: ["01-08 08 2012"],
+                        disabled_dates: ['* * *']
+                    });
+
+                    $('#datepickerrangeend').Zebra_DatePicker({
+                      direction:[1, '2012-09-12'],
+                        disabled_dates: ['01-04 08 2012']
+                    });
+                    //check before si c'est la bonne periode
+                  
+                  })
+
+                </script>
+                <form method="POST">
+                  <input type="text"  name="datepickerrangestart" id="datepickerrangestart">
+                  <input type="text"  name="datepickerrangeend" id="datepickerrangeend">
+                  <button>Réserver</button>
+                </form>
+                
+                <?php
+              } else {
+                echo "Y A RIEN BARREZ VOUS!";
+              }
+
+
+            
+            }
             
             var_dump($periodeDispo);
             var_dump($periodeReserve);

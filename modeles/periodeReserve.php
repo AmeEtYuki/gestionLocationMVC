@@ -32,6 +32,14 @@ class periodeReserve {
         return $req->fetchAll(PDO::FETCH_ASSOC); 
     }
 
+    public function getPeriodeReserveFromLocataire($idUser){
+        $sql = "SELECT * FROM periodereserve WHERE id_locataire = :id";
+        $req = $this->pdo->prepare($sql);
+        $req->bindParam(':id', $idUser , PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC); 
+    }
+
 
 
     /*
