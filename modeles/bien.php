@@ -54,5 +54,25 @@ class bien {
         $res = $req->fetch(PDO::FETCH_ASSOC);
         return $res["nb"];  
     }
+    //Pour un seul utilisateur particulier... 
+    public function getMaxPagesProprio($user) {
+        $sql = "CALL maxPagesProprio(5, :user);";
+        $req = $this->pdo->prepare($sql);
+        $req->execute(array(
+            ":user"=>$user
+        ));
+        $res = $req->fetch(PDO::FETCH_ASSOC);
+        return $res["nb"];  
+    }
+    public function getAllBiensProprio($page, $proprio) {
+        $sql = "CALL paginationBienProprio( :page , 5, :proprio);";
+        $req = $this->pdo->prepare($sql);
+        //$req->bindParam(':page', $page , PDO::PARAM_INT);
+        $req->execute(array(
+            ":page"=>$page,
+            ":proprio"=>$proprio
+        ));
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>

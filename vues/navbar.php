@@ -1,6 +1,7 @@
        
-        
-        <body class="d-flex flex-column min-vh-100" data-bs-theme="dark">
+        <!--data-bs-theme="dark" -->
+
+        <body class="d-flex flex-column min-vh-100" >
           <?php include("import.html"); 
             $usrType = (isset($_SESSION['usrType']))?$_SESSION['usrType']:"";
           ?>                     
@@ -18,7 +19,7 @@
         <?php if (($usrType == "Hote")) { ?>
           <!-- Boutons spécifique de la navbar aux Hotes.-->
             <li class="nav-item">
-              <a class="nav-link" href="?action=gererBiens">Voir mes biens</a>
+              <a class="nav-link" href="?action=mesBiens">Voir mes biens</a>
             </li>
           
         <?php } ?>
@@ -58,7 +59,7 @@
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="?action=deconnexion">Deconnexion</a></li>
                     <?php 
-                  } 
+                  }
                   ?>
             </ul>
         </li>

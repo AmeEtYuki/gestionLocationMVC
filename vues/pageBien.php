@@ -122,12 +122,12 @@ if($message==null){
                   })
 
                 </script>
-                <form method="POST">
-                  <input type="text"  name="datepickerrangestart" id="datepickerrangestart">
-                  <input type="text"  name="datepickerrangeend" id="datepickerrangeend">
-                  <button>Réserver</button>
-                </form>
-                
+
+                        <form method="POST">
+                            <input type="text"  name="datepickerrangestart" id="datepickerrangestart">
+                            <input type="text"  name="datepickerrangeend" id="datepickerrangeend">
+                            <button>Réserver</button>
+                        </form>
                 <?php
               } else {
                 echo "Y A RIEN BARREZ VOUS!";

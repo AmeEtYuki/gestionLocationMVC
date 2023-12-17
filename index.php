@@ -34,8 +34,11 @@ if(isset($_GET["action"])){
             #page d'accueil
             (new controller)->deconnexion();
             break;
-        case 'gererBiens':
+        case 'gererBien':
             (new controller)->gererBiens();
+            break;
+        case 'mesBiens':
+            (new controller)->voirPropreBiens();
             break;
         default:
             #mauvaise action

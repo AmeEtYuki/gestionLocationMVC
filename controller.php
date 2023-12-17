@@ -9,6 +9,18 @@ class controller {
             (new vue)->accueil($lesBiens,$page,(new bien)->getMaxPages());
         }
     }
+    public function voirPropreBiens(){
+        $userType = (isset($_SESSION['userID']))?$_SESSION['usrType']:"";
+        if($userType == "Hote") { 
+            $page = (isset($_GET["page"]))?$_GET["page"]:1;
+            (new vue)->voirPropreBiens(
+                (new bien)->getAllBiensProprio($page, $_SESSION['userID']),
+                $page,
+                (new bien)->getMaxPagesProprio($_SESSION['userID'])
+            );
+        }
+        
+    }
     
     public function inscription() {
         if(isset($_POST['ok'])) {
@@ -147,8 +159,16 @@ class controller {
             (new utilisateur)->checkUserSession();
         }
     }
-    function gererBiens() {
-        (new vue)->gererBiens();
+    public function gererBiens() {
+        if(isset($_GET['idBien'])) {
+        $lenzoVomit = count((new bien)->getInfosBien($_GET['idBien']));
+        if($lenzoVomit != 0) { (new vue)->gererBiens(
+            $_GET['idBien'],
+            getPeriodeDispoFromBien($_GET['idBien'])); 
+        }
+        } else {
+            echo "full flemme";
+        }
     }
 }
 ?>
