@@ -9,7 +9,7 @@
                 <img src="/images/<?=(isset($photoLien[1]))?$photoLien[1]:""?>" class="card-img-top">
                 <div class="card-body">
                     <p class="card-text"><?php $bien["description"] ?></p>
-                    <?php echo "<a href='/?action=gererBien?&idBien=".$bien["id"]."' class='btn btn-primary'>Consulter</a><br>"; ?>
+                    <?php echo "<a href='/?action=gererBien&idBien=".$bien["id"]."' class='btn btn-primary'>Consulter</a><br>"; ?>
                 </div>
             </div>
         <?php } echo "</div>"; 

@@ -164,7 +164,7 @@ class controller {
         $lenzoVomit = count((new bien)->getInfosBien($_GET['idBien']));
         if($lenzoVomit != 0) { (new vue)->gererBiens(
             $_GET['idBien'],
-            getPeriodeDispoFromBien($_GET['idBien'])); 
+            (new periodeDispo)->getPeriodeDispoFromBien($_GET['idBien'])); 
         }
         } else {
             echo "full flemme";
