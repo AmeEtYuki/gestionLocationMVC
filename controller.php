@@ -154,8 +154,9 @@ class controller {
     }
     function checkupUser() {
         $_SESSION['nbR'] = (isset($_SESSION['nbR']))?$_SESSION['nbR']+1:1;
-        if (!(isset($_SESSION['nbR']) || $_SESSION['nbR'] < 10)) { $refresh = 'true'; $_SESSION['nbR'] = 0;}
-        if ($refresh != null) {
+        $refresh = false;
+        if (!(isset($_SESSION['nbR']) || $_SESSION['nbR'] < 10)) { $refresh = true; $_SESSION['nbR'] = 0;}
+        if ($refresh != false) {
             (new utilisateur)->checkUserSession();
         }
     }

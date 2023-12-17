@@ -7,7 +7,7 @@ class periodeReserve {
 
     public function creerPeriodeReserve($idPeriode, $dateDeb, $dateFin, $idUser){
         //l faudra check si x peut modifier y bien
-        $sql = "INSERT INTO periodereserve (id_periodeDispo,dateDebut,dateFin,valide,id_locataire) VALUES ( :idPeriode , :dateDeb , :dateFin , 0 , :idUser )";
+        $sql = "INSERT INTO periodeReserve (id_periodeDispo,dateDebut,dateFin,valide,id_locataire) VALUES ( :idPeriode , :dateDeb , :dateFin , 0 , :idUser )";
         $req = $this->pdo->prepare($sql);
         $req->bindParam(':idPeriode', $idPeriode , PDO::PARAM_INT);
         $req->bindParam(':dateDeb', $dateDeb , PDO::PARAM_STR);
@@ -18,14 +18,14 @@ class periodeReserve {
 
     public function annulePeriodeReserve($idPeriode){
         //l faudra check si x peut modifier y bien
-        $sql = "DELETE FROM periodereserve WHERE id = :i";
+        $sql = "DELETE FROM periodeReserve WHERE id = :i";
         $req = $this->pdo->prepare($sql);
         $req->bindParam(':id', $idPeriode , PDO::PARAM_INT);    
         return $req->execute();
     }
 
     public function getPeriodeReserveFromPeriodeDispo($idPeriode){
-        $sql = "SELECT * FROM periodereserve WHERE id_periodeDispo = :id ORDER BY dateDebut ASC";
+        $sql = "SELECT * FROM periodeReserve WHERE id_periodeDispo = :id ORDER BY dateDebut ASC";
         $req = $this->pdo->prepare($sql);
         $req->bindParam(':id', $idPeriode , PDO::PARAM_INT);
         $req->execute();
@@ -33,7 +33,7 @@ class periodeReserve {
     }
 
     public function getPeriodeReserveFromLocataire($idUser){
-        $sql = "SELECT * FROM periodereserve WHERE id_locataire = :id";
+        $sql = "SELECT * FROM periodeReserve WHERE id_locataire = :id";
         $req = $this->pdo->prepare($sql);
         $req->bindParam(':id', $idUser , PDO::PARAM_INT);
         $req->execute();

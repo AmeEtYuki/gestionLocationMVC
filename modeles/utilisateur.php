@@ -54,6 +54,8 @@ class utilisateur {
         $prepare->execute(array(
             ":l"=>$_SESSION['userID']
         ));
+        $res = $prepare->fetch();
+        echo (count($res));
         if(!(count($res) == 0)) {
                 $_SESSION['userID'] = $res['id'];
                 $_SESSION['userName'] = $res['login'];

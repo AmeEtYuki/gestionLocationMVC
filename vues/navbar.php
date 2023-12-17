@@ -49,7 +49,7 @@
                             if (($_SESSION['usrType'] == "Hote")) {
                               ?>
                         <!--<li><a class="dropdown-item" href="#">Mes favoris</a></li>-->
-                        <li><a class="dropdown-item" href="?action=gererBien">Mes biens</a></li>
+                        <li><a class="dropdown-item" href="?action=mesBiens">Mes biens</a></li>
                         <li><a class="dropdown-item" href="?action=gestionSite">Gestion</a></li>
                     <?php 
                     } 
