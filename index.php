@@ -7,11 +7,9 @@ require("controller.php");
 require("database.php");
 //import de tout les modeles. 
 foreach ( glob( './modeles' . '/*.php' ) as $file ) {require( $file );}
-if(isset($_SESSION['user'])) {
+if(isset($_SESSION['userID'])) {
     (new controller)->checkupUser();
 }
-
-
 if(isset($_GET["action"])){
     switch ($_GET["action"]) {
         case 'accueil':

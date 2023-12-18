@@ -195,18 +195,12 @@ class controller
         }
         //var_dump($errors);
     }
-    function checkupUser()
-    {
-        $_SESSION['nbR'] = (isset($_SESSION['nbR'])) ? $_SESSION['nbR'] + 1 : 1;
-        if (!(isset($_SESSION['nbR']) || $_SESSION['nbR'] < 10)) {
-            $refresh = 'true';
-            $_SESSION['nbR'] = 0;
-        }
-        if ($refresh != null) {
-            (new utilisateur)->checkUserSession();
-        }
-    }
-    public function gererBiens()
+    function checkupUser() {
+        $_SESSION['nbR'] = (isset($_SESSION['nbR']))?$_SESSION['nbR']+1:1;
+        $refresh = false;
+        if (!(isset($_SESSION['nbR']) || $_SESSION['nbR'] < 10)) { $refresh = true; $_SESSION['nbR'] = 0;}}
+
+    function gererBiens()
     {
         if (isset($_GET['idBien'])) {
             $lenzoVomit = count((new bien)->getInfosBien($_GET['idBien']));
@@ -220,4 +214,5 @@ class controller
             (new vue)->erreur404();
         }
     }
-}
+        }
+?>
