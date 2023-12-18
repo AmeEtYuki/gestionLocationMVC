@@ -21,6 +21,15 @@ class bien {
         return $req->fetchAll(PDO::FETCH_ASSOC);  
     }
 
+    public function getIfUserOwnBien($idUser, $idBien){
+        $sql = "SELECT * FROM bien WHERE id_user = :id AND id = :alexa";
+        $req = $this->pdo->prepare($sql);
+        $req->bindParam(':id', $idUser , PDO::PARAM_INT);
+        $req->bindParam(':alexa', $idBien , PDO::PARAM_INT);
+        $req->execute();
+        return (count($req->fetchAll(PDO::FETCH_ASSOC)) == 1);  
+    }
+
     public function getNombrePieceETSurfaceBien($idBien){
         $sql = "CALL getNombrePieceETSurface( :id )";
         $req = $this->pdo->prepare($sql);

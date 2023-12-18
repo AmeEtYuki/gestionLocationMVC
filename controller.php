@@ -211,6 +211,30 @@ class controller
 
     function gererBiens()
     {
+        if(isset($_POST['ajouterUnePeriode']) && isset($_GET['idBien'])) {
+            $userID = $_SESSION['userID'];
+            //getIfUserOwnBien($idUser, $idBien){
+            $ilalebien = (new bien)->getIfUserOwnBien($userID, $_GET['idBien']);
+            if($ilalebien) {
+                //creerPeriodeDispo($idBien, $dateDeb, $dateFin, $prix)
+                (new periodeDispo)->creerPeriodeDispo(
+                 $_GET['idBien'],
+                $_POST['datepickerrangestart'],
+                $_POST['datepickerrangeend'],
+                $_POST['LAGAFFE']
+             );
+            }
+
+        }
+        if(isset($_POST['delete']) && isset($_GET['idBien'])) {
+            $userID = $_SESSION['userID'];
+            $ilalebien = (new bien)->getIfUserOwnBien($userID, $_GET['idBien']);
+            if($ilalebien) {
+                //deletePeriodeDispo($id)
+                (new periodeDispo)->deletePeriodeDispo($_POST['tid']);
+            }
+
+        }
         if (isset($_GET['idBien'])) {
             $lenzoVomit = count((new bien)->getInfosBien($_GET['idBien']));
             if ($lenzoVomit != 0) {

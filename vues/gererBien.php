@@ -18,10 +18,11 @@ $('#datepickerrangeend-<?=$sarahCroche["id"]?>').Zebra_DatePicker({
 //check before si c'est la bonne periode
 })
 </script>
-<form method="POST" action="?action=gererBien">
-<input type="number" name="bid" value="<?= $idBien ?>" style="display:none;">
+<form method="POST" action="?action=gererBien&idBien=<?=$_GET['idBien']?>">
+<input type="number" name="tid" value="<?= $sarahCroche['id'] ?>" style="display:none;">
 <input type="text"  disabled name="datepickerrangestart-<?=$sarahCroche['id']?>" class="text-dark" id="datepickerrangestart-<?=$sarahCroche['id']?>" value="<?=$sarahCroche["dateDebut"]?>"> AU 
 <input type="text" disabled name="datepickerrangeend-<?=$sarahCroche['id']?>" class="text-dark" id="datepickerrangeend-<?=$sarahCroche['id']?>" value="<?=$sarahCroche["dateFin"]?>">
+<input type="number" value="<?=$sarahCroche["prixJour"]?>" disabled>
 <input type="submit" value="Supprimer" name="delete">
 </form>
 <?php
@@ -44,11 +45,12 @@ $('#datepickerrangeend-new').Zebra_DatePicker({
 
 </script>
 
-<form method="POST" action="?action=gererBien" class="text-dark">
+<form method="POST" action="?action=gererBien&idBien=<?=$_GET['idBien']?>" class="text-dark">
 <input type="text"  name="datepickerrangestart" class="text-dark" id="datepickerrangestart-new"> AU
 <input type="text"  name="datepickerrangeend" class="text-dark" id="datepickerrangeend-new">
 <input type="submit" value="Ajouter cette periode" name="ajouterUnePeriode">
-
+<label for="number">LE PRIX</label>
+<input type="number" name="LAGAFFE">
 </form>
 </div>
 </div>
