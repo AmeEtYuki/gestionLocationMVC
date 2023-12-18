@@ -27,11 +27,11 @@ class utilisateur {
     }
     public function connexion($email, $password) {
         $prepare=$this->pdo->prepare("SELECT * FROM `user` WHERE `login` = :l");
-        // $prepare->execute(array(
-        //     ":l"=>$email
-        // ));
-        $prepare->bindParam(':l', $email , PDO::PARAM_INT);
-        $prepare->execute();
+        $prepare->execute(array(
+            ":l"=>$email
+         ));
+        /*$prepare->bindParam(':l', $email , PDO::PARAM_INT);
+        $prepare->execute();*/
         $res = $prepare->fetch();
         // 0 = ok 1 = mdp/user erroné 2 = il existe pas fréro.
         if(!(count($res) == 0)) {
