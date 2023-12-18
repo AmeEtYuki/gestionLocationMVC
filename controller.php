@@ -44,7 +44,7 @@ class controller
             if ($mdp1 != $mdp2) {
                 $errors[] = "Les deux mots de passe ne correspondent pas";
             }
-            if ((new utilisateur)->utilisateurExiste($email)) {
+            if (!(new utilisateur)->utilisateurExiste($email)) {
                 $errors[] = "L'utilisateur existe déjà.";
             }
             $longueur_minimale = 12;
