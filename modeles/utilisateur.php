@@ -6,9 +6,8 @@ class utilisateur {
     }
     public function utilisateurExiste($email) {
         $prepare = $this->pdo->prepare("SELECT COUNT(*) FROM user WHERE `login`=:email");
-        $prepare->execute(array(
-            ":email"=>$email
-        ));
+        $prepare->bindParam(':email', $email , PDO::PARAM_INT);
+        $prepare->execute();
         $res = $prepare->fetch();
         return (count($res) == 0);
     }

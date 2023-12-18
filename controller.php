@@ -167,7 +167,7 @@ class controller
                                 if((new periodeReserve)->creerPeriodeReserve($pd["id"],$_POST["datepickerrangestart"],$_POST["datepickerrangeend"],$_SESSION["userID"])){
                                     $message[] = "Période réservé ! En attente de validation, prix de ".$pd["prixJour"]."€ par jour.";
                                 } else {
-                                    $message[] = "Une erreur est survenue lors de la réservation de la période !";
+                                    $message[] = "Vous ne pouvez pas séléctionner ces périodes ! (Deux périodes différentes)";
                                 }
                             }
                             (new vue)->pageBien(
