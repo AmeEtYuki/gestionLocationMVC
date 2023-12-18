@@ -14,7 +14,6 @@ class vue {
     public function accueil($lesBiens, $page, $pages){
         //accueil
         $this->entete();
-        if (isset($_SESSION['nbR'])) { echo $_SESSION['nbR']; } else { echo "C'EST VIDE LA CON DE SA RACE";}
         include("./vues/accueil.php");
 
         $this->pied();
