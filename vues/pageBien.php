@@ -153,6 +153,9 @@ if ($message == null) {
 
   <?php
 
+if($pieces != false){
+  var_dump($pieces);
+}
 
 } else {
   foreach ($message as $error) {

@@ -39,7 +39,7 @@ class vue {
     }
 
 
-    public function pageBien($bien, $photo, $periodeDispo, $periodeReserve, $message = null){
+    public function pageBien($bien, $photo, $periodeDispo, $periodeReserve, $pieces, $message = null){
         $this->entete();
         include("./vues/pageBien.php");
         $this->pied();
