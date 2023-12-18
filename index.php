@@ -35,6 +35,9 @@ if(isset($_GET["action"])){
         case 'mesBiens':
             (new controller)->voirPropreBiens();
             break;
+        case 'factures':
+            (new controller)->voirFactures();
+            break;
         default:
             #mauvaise action
             (new vue)->erreur404();

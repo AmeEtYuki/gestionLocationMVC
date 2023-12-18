@@ -94,19 +94,28 @@ END $$
 DELIMITER ;
 
 
---------------------------------------------
-CREATE PROCEDURE ImmoMVC.paginationBienProprio(page int, objetParPage int, proprio int)
+---------------------------------------------------------------------
+
+DROP PROCEDURE IF EXISTS paginationBienProprio;
+DELIMITER $$
+
+CREATE PROCEDURE paginationBienProprio(page int, objetParPage int, proprio int)
 BEGIN
     DECLARE off INT;
     Set off = page*objetParPage-objetParPage;
     SELECT * FROM bien WHERE id_user = proprio LIMIT objetParPage OFFSET off ;
 END $$
-DELIMITER;
+DELIMITER ;
 
-CREATE PROCEDURE ImmoMVC.maxPagesProprio(objetParPage int, proprio int)
+-------------------------------------------------------------------
+
+DROP PROCEDURE IF EXISTS maxPagesProprio;
+DELIMITER $$
+
+CREATE PROCEDURE maxPagesProprio(objetParPage int, proprio int)
 BEGIN
     DECLARE total INT;
     SELECT COUNT(*) FROM bien WHERE id_user = proprio INTO total;
     SELECT CEIL(total/objetParPage) as nb;
 END $$
-DELIMITER;
+DELIMITER ;

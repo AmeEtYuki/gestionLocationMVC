@@ -247,5 +247,30 @@ class controller
             (new vue)->erreur404();
         }
     }
+
+    function voirFactures(){
+        
+        //deux trucs, les périodes reserves et les periodes dispo
+        //il faudra compter les jours pour le prix total
+        if(isset($_SESSION["userID"])){
+            if($_SESSION["usrType"]=="Locataire"){
+                $pdrs = (new periodeReserve)->getPeriodeReserveFromLocataire($_SESSION["userID"]);
+                $pds = [];
+                
+                if(!empty($pdrs)){
+                    foreach($pdrs as $pdr){
+                        $pds[] = (new periodeDispo)->getPeriodeDispoFromId($pdr["id_periodeDispo"]);
+                    }
+                }
+                
+                (new vue)->voirFactures($pdrs, $pds);
+            } 
+            
+        } else {
+            //not allowed 403
         }
+        
+
+    }
+}
 ?>

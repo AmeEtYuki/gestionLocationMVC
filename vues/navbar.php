@@ -55,7 +55,7 @@
                     } 
         
                     ?>
-                    <li><a class="dropdown-item" href="">Mes factures</a></li>
+                    <li><a class="dropdown-item" href="?action=factures">Mes factures</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="?action=deconnexion">Deconnexion</a></li>
                     <?php 

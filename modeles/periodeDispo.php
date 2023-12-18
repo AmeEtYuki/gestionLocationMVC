@@ -43,6 +43,23 @@ class periodeDispo {
         return $req->fetch(PDO::FETCH_ASSOC); 
     }
 
+    public function getPeriodeDispoFromUser($idUser){
+        $sql = "SELECT dateDebut,dateFin,prixJour,rue,ville,cp FROM periodedispo INNER JOIN bien ON bien.id=periodedispo.id_bien WHERE id_user = :id";
+        $req = $this->pdo->prepare($sql);
+        $req->bindParam(':id', $idUser , PDO::PARAM_STR);   
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC); 
+    }
+
+    public function getPeriodeDispoFromId($id){
+        $sql = "SELECT * FROM periodeDispo WHERE id = :id";
+        $req = $this->pdo->prepare($sql);
+        $req->bindParam(':id', $id , PDO::PARAM_INT);   
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
     /*
     TODO :
     creerPeriode(dateDeb,dateFin,idUser,idBien) // il faut check s'il n'y a pas déjà une période pour ce bien à ces dates
