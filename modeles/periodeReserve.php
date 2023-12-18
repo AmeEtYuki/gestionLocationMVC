@@ -12,8 +12,16 @@ class periodeReserve {
         $req->bindParam(':idPeriode', $idPeriode , PDO::PARAM_INT);
         $req->bindParam(':dateDeb', $dateDeb , PDO::PARAM_STR);
         $req->bindParam(':dateFin', $dateFin , PDO::PARAM_STR);
-        $req->bindParam(':idUser', $idUser , PDO::PARAM_STR);        
-        return $req->execute();
+        $req->bindParam(':idUser', $idUser , PDO::PARAM_STR);    
+        $bool = false;
+        try {
+            //code...
+            $bool = $req->execute();
+        } catch (\Throwable $th) {
+            //throw $th;
+            $bool = false;
+        }    
+        return $bool;
     }
 
     public function annulePeriodeReserve($idPeriode){
