@@ -149,9 +149,14 @@ class controller
                         return $d && $d->format($format) === $date;
                     }
 
+                    //pour transmettre toutes les données à la vue !!
                     $photos = (new photo)->photoPresentBien($_GET["idBien"]);
                     $bien = (new bien)->getInfosBien($_GET['idBien']);
-                    $pieces = (new piece)->getInfosPiece($_GET['idBien']);
+                    $pieces = (new piece)->getPiecesBien($_GET['idBien']);
+                    
+                    $equipements = (new equipement)->getEquipementsBien($_GET['idBien']);
+
+
                     if(isset($_POST["reserve"]) && isset($_POST["datepickerrangestart"]) && isset($_POST["datepickerrangeend"])){
                         if(validateDate($_POST["datepickerrangestart"]) && validateDate($_POST["datepickerrangeend"])){
                             $pd = (new periodeDispo)->getPeriodeDispoFromDates($_POST["datepickerrangestart"],$_POST["datepickerrangeend"]);
@@ -171,9 +176,12 @@ class controller
                                 $periodeDispo,
                                 $periodeReserve,
                                 $pieces,
+                                $equipements,
                                 $message
                             );
 
+                        } else {
+                            $message[] = "Petit filou ! C'est safe ici (les dates ne sont pas au format attendu)🛡";
                         }
                     } else {
                         (new vue)->pageBien(
@@ -181,7 +189,8 @@ class controller
                             $photos,
                             $periodeDispo,
                             $periodeReserve,
-                            $pieces
+                            $pieces,
+                            $equipements
                         );
                     }
                 }

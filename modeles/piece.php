@@ -5,12 +5,12 @@ class piece {
         $this->pdo = getPDO();
     }
 
-    public function getInfosPiece($IdBien){
-        $sql = "SELECT * FROM bien WHERE id = :id";
+    public function getPiecesBien($idBien){
+        $sql = "SELECT * FROM piece WHERE id_bien = :id";
         $req = $this->pdo->prepare($sql);
         $req->bindParam(':id', $idBien , PDO::PARAM_INT);
         $req->execute();
-        return $req->fetch(PDO::FETCH_ASSOC);  
+        return $req->fetchAll(PDO::FETCH_ASSOC);  
     }
 
     public function getAllPiece($idBien){

@@ -140,9 +140,34 @@ if ($message == null) {
         }
         ?>
         <hr>
+
         <?php
-        echo $bien["rue"].", ".$bien["ville"]." - ".$bien["cp"];
-        echo"<hr><p>".$bien["description"]."<br>Bati en ".$bien["anneeConstru"].".</p>";
+        echo $bien["rue"].", ".$bien["ville"]." - ".$bien["cp"]." <a href='https://www.google.fr/maps/search/".$bien["ville"]."+".$bien["rue"]."+".$bien["cp"]."' >Voir sur maps</a>";
+
+        echo"<hr><p>".$bien["description"]."<br>📆Bati en ".$bien["anneeConstru"].".</p>";
+        if($pieces != false){
+          $surface = 0;
+          $string = "<ul>";
+          foreach($pieces as $piece){
+            $surface += $piece["surface"];
+            $string .= "<li>";
+            $string .= $piece["libelle"]." de ".$piece["surface"]."m²<ul>";
+            
+            foreach($equipements as $equ){
+              if($equ["id_piece"]==$piece["id"]){
+                $string .= "<li>".$equ["libelle"]."</li>";
+              }
+            }
+            $string .= "</ul></li>";
+          }
+          $string .= "</ul>";
+          echo "<hr>".count($pieces)." pièces, pour ".$surface." m² de surface habitable.";
+          echo "<br>".$string;
+          
+        } else {
+          echo "Aussi fou que ça puisse paraitre, ce bien n'a pas de pièces !! 🤔";
+        }
+        
         ?>
       </div>
 
@@ -153,9 +178,7 @@ if ($message == null) {
 
   <?php
 
-if($pieces != false){
-  var_dump($pieces);
-}
+
 
 } else {
   foreach ($message as $error) {
