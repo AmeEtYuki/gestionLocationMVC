@@ -151,6 +151,7 @@ class controller
 
                     $photos = (new photo)->photoPresentBien($_GET["idBien"]);
                     $bien = (new bien)->getInfosBien($_GET['idBien']);
+                    $pieces = (new piece)->getInfosPiece($_GET['idBien']);
                     if(isset($_POST["reserve"]) && isset($_POST["datepickerrangestart"]) && isset($_POST["datepickerrangeend"])){
                         if(validateDate($_POST["datepickerrangestart"]) && validateDate($_POST["datepickerrangeend"])){
                             $pd = (new periodeDispo)->getPeriodeDispoFromDates($_POST["datepickerrangestart"],$_POST["datepickerrangeend"]);
@@ -169,6 +170,7 @@ class controller
                                 $photos,
                                 $periodeDispo,
                                 $periodeReserve,
+                                $pieces,
                                 $message
                             );
 
@@ -178,7 +180,8 @@ class controller
                             $bien,
                             $photos,
                             $periodeDispo,
-                            $periodeReserve
+                            $periodeReserve,
+                            $pieces
                         );
                     }
                 }
