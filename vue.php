@@ -119,5 +119,11 @@ class vue {
       include("./vues/mesBiens.php");
       $this->pied();
     }
+
+    function voirFactures($periodeReserves, $periodeDispos) {
+      $this->entete();
+      include("./vues/voirFactures.php");
+      $this->pied();
+    }
 } 
 ?>
