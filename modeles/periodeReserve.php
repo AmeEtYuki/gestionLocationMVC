@@ -26,11 +26,21 @@ class periodeReserve {
         return $bool;
     }
 
+    public function checkOwnership($idPeriode, $idUser){
+        $sql = "SELECT * FROM periodeReserve WHERE id = :id AND id_locataire = :loca";
+        $req = $this->pdo->prepare($sql);
+        $req->bindParam(':id', $idPeriode , PDO::PARAM_INT);
+        $req->bindParam(':loca', $idUser , PDO::PARAM_INT);
+        $req->execute();
+        return (count($req->fetchAll(PDO::FETCH_ASSOC)) == 1);  
+    }
+
     public function annulePeriodeReserve($idPeriode){
         //l faudra check si x peut modifier y bien
-        $sql = "DELETE FROM periodeReserve WHERE id = :i";
+        $sql = "DELETE FROM periodeReserve WHERE id = :id";
         $req = $this->pdo->prepare($sql);
-        $req->bindParam(':id', $idPeriode , PDO::PARAM_INT);    
+        $req->bindParam(':id', $idPeriode , PDO::PARAM_INT);  
+        //try and catch  
         return $req->execute();
     }
 
@@ -48,6 +58,14 @@ class periodeReserve {
         $req->bindParam(':id', $idUser , PDO::PARAM_INT);
         $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC); 
+    }
+
+    public function getPeriodeReserveFromId($id){
+        $sql = "SELECT * FROM periodeReserve WHERE id = :id";
+        $req = $this->pdo->prepare($sql);
+        $req->bindParam(':id', $id , PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetch(PDO::FETCH_ASSOC); 
     }
 
 

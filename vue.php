@@ -120,7 +120,7 @@ class vue {
       $this->pied();
     }
 
-    function voirFactures($periodeReserves, $periodeDispos) {
+    function voirFactures($periodeReserves, $periodeDispos, $messages) {
       $this->entete();
       include("./vues/voirFactures.php");
       $this->pied();

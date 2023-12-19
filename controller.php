@@ -254,20 +254,37 @@ class controller
         //il faudra compter les jours pour le prix total
         if(isset($_SESSION["userID"])){
             if($_SESSION["usrType"]=="Locataire"){
+                $message = array();
+                //on annule avant, sinon ça le récup et l'affiche meme si c'est suppr
+                if(isset($_POST["annuleReservation"])){
+                    if((new periodeReserve)->checkOwnership($_POST["annuleReservation"],$_SESSION["userID"])){
+                        $pr = (new periodeReserve)->getPeriodeReserveFromId($_POST["annuleReservation"]);
+                        if((new periodeReserve)->annulePeriodeReserve($_POST["annuleReservation"])){
+                            $message[] = "Réservation du ".$pr["dateDebut"]." au ".$pr["dateFin"]." correctement annulé !";
+                        }
+                    } else {
+                        $message[] = "Vilain ! Ce n'est pas ta periode !!! 🤨😡";
+                    }
+                }
+
+                
                 $pdrs = (new periodeReserve)->getPeriodeReserveFromLocataire($_SESSION["userID"]);
-                $pds = [];
+                $pds = array();
                 
                 if(!empty($pdrs)){
                     foreach($pdrs as $pdr){
                         $pds[] = (new periodeDispo)->getPeriodeDispoFromId($pdr["id_periodeDispo"]);
                     }
                 }
+
                 
-                (new vue)->voirFactures($pdrs, $pds);
+                
+                (new vue)->voirFactures($pdrs, $pds, $message);
             } 
             
         } else {
             //not allowed 403
+            (new vue)->voirFactures(null, null, array("403 : accès non autorisé<br>Veuillez-vous connecter !"));
         }
         
 

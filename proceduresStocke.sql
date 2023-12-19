@@ -119,3 +119,5 @@ BEGIN
     SELECT CEIL(total/objetParPage) as nb;
 END $$
 DELIMITER ;
+
+--rajouter un before delete sur periode reserve
