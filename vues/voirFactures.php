@@ -9,12 +9,14 @@ function compteJour($reserve){
 
 //il faut compter les jours, pour ensuite compter le prix
 if(!empty($messages)){
+    echo "<p>";
     foreach($messages as $m){
-        echo $m; // peut etre avoir un jolie balise
+        echo $m."<br>"; // peut etre avoir un jolie balise
     }
+    echo "</p>";
 }
 if(empty($periodeDispos)){
-    echo"<h2>Vous n'avez rien reservé !! 🤮</h2>";
+    echo"<h2>Vous n'avez rien reservé !!</h2>";
 } else {
     
     echo"<h2>Vous avez reservé :</h2><br><ul><form method='POST'>";
