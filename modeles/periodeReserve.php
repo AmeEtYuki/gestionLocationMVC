@@ -34,7 +34,14 @@ class periodeReserve {
         $req->execute();
         return (count($req->fetchAll(PDO::FETCH_ASSOC)) == 1);  
     }
-
+    public function checkOwnershipBien($idPeriode, $idOwner){
+        $sql = "SELECT * FROM periodeReserve INNER JOIN periodeDispo ON periodeDispo.id = periodeReserve.id_PeriodeDispo INNER JOIN bien ON bien.id = periodeDispo.id_bien WHERE periodeReserve.id = :id AND bien.id_user = :oskour";
+        $req = $this->pdo->prepare($sql);
+        $req->bindParam(':id', $idPeriode , PDO::PARAM_INT);
+        $req->bindParam(':oskour', $idOwner , PDO::PARAM_INT);
+        $req->execute();
+        return (count($req->fetchAll(PDO::FETCH_ASSOC)) == 1);  
+    }
     public function annulePeriodeReserve($idPeriode){
         //l faudra check si x peut modifier y bien
         $sql = "DELETE FROM periodeReserve WHERE id = :id";
@@ -66,6 +73,13 @@ class periodeReserve {
         $req->bindParam(':id', $id , PDO::PARAM_INT);
         $req->execute();
         return $req->fetch(PDO::FETCH_ASSOC); 
+    }
+    public function getPeriodeReserveFromBien($bien) {
+        $req = $this->pdo->prepare("SELECT periodeReserve.id, periodeReserve.dateDebut, periodeReserve.dateFin, periodeReserve.valide FROM periodeReserve INNER JOIN periodeDispo ON periodeDispo.id = periodeReserve.id_PeriodeDispo INNER JOIN bien ON bien.id = periodeDispo.id_bien WHERE bien.id=:pitier");
+        $req->execute(array(
+            ":pitier"=>$bien
+        ));
+        return $req->fetchAll();
     }
 
 

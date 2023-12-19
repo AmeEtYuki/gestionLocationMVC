@@ -109,7 +109,7 @@ class vue {
   <?php
   $this->pied();
     }
-    function gererBiens($idBien,$periodesLibreBien) {
+    function gererBiens($idBien,$periodesLibreBien,$periodeReserves) {
       $this->entete();
       include("./vues/gererBien.php");
       $this->pied();

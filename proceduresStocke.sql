@@ -54,17 +54,17 @@ BEGIN
     DECLARE cpt INT; /*compte le nombre de periode reserve où une des nouvelles date se situent dans d'autres dates déjà prises*/
     DECLARE cpt2 INT; /*vérifie si la période à insérer est cohérente avec la période dispo*/
     DECLARE cpt3 INT; /*suite de cpt, compte le nombre de periode qui se situent entre les dates sélectionnée (en sandwich)*/
-    SELECT COUNT(*) FROM periodereserve WHERE (NEW.dateDebut BETWEEN dateDebut and dateFin 
+    SELECT COUNT(*) FROM periodeReserve WHERE (NEW.dateDebut BETWEEN dateDebut and dateFin 
     OR NEW.dateFin BETWEEN dateDebut and dateFin) 
     AND id_periodeDispo = NEW.id_periodeDispo INTO cpt;
 
-    SELECT COUNT(*) FROM periodereserve WHERE (dateDebut BETWEEN NEW.dateDebut and NEW.dateFin 
+    SELECT COUNT(*) FROM periodeReserve WHERE (dateDebut BETWEEN NEW.dateDebut and NEW.dateFin 
     OR dateFin BETWEEN NEW.dateDebut and NEW.dateFin)
     AND id_periodeDispo = NEW.id_periodeDispo INTO cpt3;
 
-    SELECT COUNT(*) FROM periodedispo WHERE periodedispo.id = NEW.id_periodeDispo
-    AND NEW.dateDebut BETWEEN periodedispo.dateDebut and periodedispo.dateFin
-    AND NEW.dateFin BETWEEN periodedispo.dateDebut and periodedispo.dateFin INTO cpt2;
+    SELECT COUNT(*) FROM periodeDispo WHERE periodeDispo.id = NEW.id_periodeDispo
+    AND NEW.dateDebut BETWEEN periodeDispo.dateDebut and periodeDispo.dateFin
+    AND NEW.dateFin BETWEEN periodeDispo.dateDebut and periodeDispo.dateFin INTO cpt2;
     IF cpt!=0 OR cpt3!=0 THEN
       SIGNAL sqlstate '45001' set message_text = "Cette période est déjà prise.";
     ELSE

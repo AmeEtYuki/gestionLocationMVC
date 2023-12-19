@@ -55,7 +55,23 @@ $('#datepickerrangeend-new').Zebra_DatePicker({
 </div>
 </div>
 </div>
+<h1>Réservation validées / nécessitant une validation</h1>
 <?php
+//var_dump($periodeReserves);
+foreach ($periodeReserves as $steamdeck) {
+?>
+
+<form method="POST" action="?action=gererBien&idBien=<?=$_GET['idBien']?>">
+<input type="number" name="tid" value="<?= $steamdeck['id'] ?>" style="display:none;">
+<input type="text"  disabled class="text-dark" value="<?=$steamdeck["dateDebut"]?>"> AU 
+<input type="text" disabled class="text-dark" value="<?=$steamdeck["dateFin"]?>">
+<input type="number" value="$steamdeck['prixJour']" disabled>
+<input type="submit" value="Accepter cette demande" name="accept">
+<input type="submit" value="Refuser cette demande" name="periodRefuse">
+</form>
+
+<?php }
+
 
 
 ?>

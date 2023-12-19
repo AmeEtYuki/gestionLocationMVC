@@ -226,6 +226,7 @@ class controller
             }
 
         }
+
         if(isset($_POST['delete']) && isset($_GET['idBien'])) {
             $userID = $_SESSION['userID'];
             $ilalebien = (new bien)->getIfUserOwnBien($userID, $_GET['idBien']);
@@ -238,9 +239,11 @@ class controller
         if (isset($_GET['idBien'])) {
             $lenzoVomit = count((new bien)->getInfosBien($_GET['idBien']));
             if ($lenzoVomit != 0) {
+                //var_dump((new periodeReserve)->getPeriodeReserveFromBien($_GET['idBien']));
                 (new vue)->gererBiens(
                     $_GET['idBien'],
-                    (new periodeDispo)->getPeriodeDispoFromBien($_GET['idBien'])
+                    (new periodeDispo)->getPeriodeDispoFromBien($_GET['idBien']),
+                    (new periodeReserve)->getPeriodeReserveFromBien($_GET['idBien'])
                 );
             }
         } else {
