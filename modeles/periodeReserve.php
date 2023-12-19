@@ -13,13 +13,15 @@ class periodeReserve {
         $req->bindParam(':dateDeb', $dateDeb , PDO::PARAM_STR);
         $req->bindParam(':dateFin', $dateFin , PDO::PARAM_STR);
         $req->bindParam(':idUser', $idUser , PDO::PARAM_STR);    
-        $bool = false;
+        $bool = true;
         try {
             //code...
             $bool = $req->execute();
+            
         } catch (\Throwable $th) {
             //throw $th;
             $bool = false;
+            
         }    
         return $bool;
     }

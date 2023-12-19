@@ -56,7 +56,7 @@ class periodeDispo {
         $req = $this->pdo->prepare($sql);
         $req->bindParam(':id', $id , PDO::PARAM_INT);   
         $req->execute();
-        return $req->fetchAll(PDO::FETCH_ASSOC);
+        return $req->fetch(PDO::FETCH_ASSOC);
     }
 
 
