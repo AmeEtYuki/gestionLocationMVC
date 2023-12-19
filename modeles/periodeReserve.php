@@ -69,7 +69,6 @@ class periodeReserve {
     }
 
 
-
     /*
     TODO :
     reserve(dateDeb,dateFin,idUser,idPeriodeDispo)
