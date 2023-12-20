@@ -1,6 +1,7 @@
 <?php
 class controller
 {
+
     public function accueil()
     {
         $page = (isset($_GET["page"])) ? $_GET["page"] : 1;
@@ -225,6 +226,28 @@ class controller
              );
             }
 
+        }
+
+        if((isset($_POST["accept"]) || isset($_POST["periodRefuse"])) && isset($_SESSION["userID"]) && isset($_POST["tid"])){
+            $periodeReserve = (new periodeReserve)->getPeriodeReserveFromId($_POST["tid"]);
+            if(!empty($periodeReserve)){
+                $periode = (new periodeDispo)->getPeriodeDispoFromId($periodeReserve["id_periodeDispo"]);
+                $bien = (new bien)->getInfosBien($periode["id_bien"]);
+                if($bien["id_user"] == $_SESSION["userID"]){
+                    if(isset($_POST["accept"])){
+                        //modify
+                        (new periodeReserve)->setPeriodeReserveValide($_POST["tid"]);
+                    } elseif(isset($_POST["periodRefuse"])){
+                        //delete
+                        (new periodeReserve)->annulePeriodeReserve($_POST["tid"]);
+                    }
+                } else {
+                    //pas le proprio
+                }
+            } else {
+                //couille
+            }
+  
         }
 
         if(isset($_POST['delete']) && isset($_GET['idBien'])) {

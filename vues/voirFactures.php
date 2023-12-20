@@ -28,9 +28,9 @@ if(empty($periodeDispos)){
                 echo "<li><a href='?action=showBien&idBien=".$pd["id_bien"]."'>Voir le bien</a> : Réservé du ".$pr["dateDebut"]." au ".$pr["dateFin"]." soit ".$cptJour." jours pour un total de ".($cptJour*$pd["prixJour"])."€.<br>"; //pour le bien 
                 //si periode reserve est valide alors :::
                 if(!$pr["valide"]){
-                    echo"Votre réservation n'est pas encore validé par le propriétaire, vous pouvez encore annuler : <button name='annuleReservation' value='".$pr["id"]."' >Annuler</button>";
+                    echo"❌ Votre réservation n'est pas encore validé par le propriétaire, vous pouvez encore annuler : <button name='annuleReservation' value='".$pr["id"]."' >Annuler</button>";
                 } else {
-                    echo "Votre réservation a été validé par le propriétaire, vous ne pouvez plus l'annuler.";
+                    echo "✅ Votre réservation a été validé par le propriétaire, vous ne pouvez plus l'annuler.";
                 }
 
                 echo "<br></li><br>";

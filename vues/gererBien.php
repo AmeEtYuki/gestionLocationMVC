@@ -48,9 +48,9 @@ $('#datepickerrangeend-new').Zebra_DatePicker({
 <form method="POST" action="?action=gererBien&idBien=<?=$_GET['idBien']?>" class="text-dark">
 <input type="text"  name="datepickerrangestart" class="text-dark" id="datepickerrangestart-new"> AU
 <input type="text"  name="datepickerrangeend" class="text-dark" id="datepickerrangeend-new">
-<input type="submit" value="Ajouter cette periode" name="ajouterUnePeriode">
 <label for="number">LE PRIX</label>
 <input type="number" name="LAGAFFE">
+<input type="submit" value="Ajouter cette periode" name="ajouterUnePeriode"><br>
 </form>
 </div>
 </div>
@@ -65,9 +65,28 @@ foreach ($periodeReserves as $steamdeck) {
 <input type="number" name="tid" value="<?= $steamdeck['id'] ?>" style="display:none;">
 <input type="text"  disabled class="text-dark" value="<?=$steamdeck["dateDebut"]?>"> AU 
 <input type="text" disabled class="text-dark" value="<?=$steamdeck["dateFin"]?>">
-<input type="number" value="$steamdeck['prixJour']" disabled>
-<input type="submit" value="Accepter cette demande" name="accept">
-<input type="submit" value="Refuser cette demande" name="periodRefuse">
+<?php
+if($steamdeck["valide"]==1){
+  echo " Validé ✅";
+} else {
+  ?>
+  <input type="submit" value="Accepter cette demande ✅" name="accept">
+<input type="submit" value="Refuser cette demande ❌" name="periodRefuse">
+  <?php
+ 
+}
+// il faudrait récup toutes les périodes dispo, donc pas ouf
+// function compteJour($reserve){
+//   //impossible avec le datetime
+//   $start = new DateTimeImmutable($reserve["dateDebut"]);
+//   $end = new DateTimeImmutable($reserve["dateFin"]);
+//   return ($start->diff($end))->format('%a'); // %a -> days
+// }
+// var_dump($steamdeck);
+// $totalj = compteJour($steamdeck);
+// echo " soit ".$totalj." jour, pour un total de ".($totalj*$steamdeck["prixJour"])."€.";
+?>
+
 </form>
 
 <?php }
