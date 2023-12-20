@@ -2,6 +2,8 @@
         <!--data-bs-theme="dark" -->
 
         <body class="d-flex flex-column min-vh-100" >
+        <title>ImmoMVC</title>
+        <link rel="icon" type="image/gif" href="logo.gif" />
           <?php include("import.html"); 
             $usrType = (isset($_SESSION['usrType']))?$_SESSION['usrType']:"";
           ?>                     
@@ -50,7 +52,7 @@
                               ?>
                         <!--<li><a class="dropdown-item" href="#">Mes favoris</a></li>-->
                         <li><a class="dropdown-item" href="?action=mesBiens">Mes biens</a></li>
-                        <li><a class="dropdown-item" href="?action=gestionSite">Gestion</a></li>
+                        <!-- <li><a class="dropdown-item" href="?action=gestionSite">Gestion</a></li>-->
                     <?php 
                     } 
         
