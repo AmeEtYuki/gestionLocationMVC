@@ -67,6 +67,13 @@ class periodeReserve {
         return $req->fetchAll(PDO::FETCH_ASSOC); 
     }
 
+    public function setPeriodeReserveValide($id){
+        $sql = "UPDATE periodeReserve SET valide=1 WHERE id = :id";
+        $req = $this->pdo->prepare($sql);
+        $req->bindParam(':id', $id, PDO::PARAM_INT);  
+        return $req->execute();
+    }
+
     public function getPeriodeReserveFromId($id){
         $sql = "SELECT * FROM periodeReserve WHERE id = :id";
         $req = $this->pdo->prepare($sql);
