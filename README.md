@@ -1,4 +1,4 @@
-# La meilleure appli web
+# ImmoMVC, application de location de bien en ligne
 
 Il faut rajouter dans le répertoire parent du dossier gestionLocationMVC un fichier db.ini de la sorte :
 
