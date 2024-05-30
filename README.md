@@ -14,8 +14,8 @@ Pour vous connecter à vôtre compte, utiliser le bouton "compte" en haut à dro
 
 
 
-Pour activer la fonctionnalité premium (pour les propriétaires) utilisez l'onglet portant votre nom d'utilisateur, situé au même endroit que le boutton "compte" vous ayant servis à vous connecter, puis rendez-vous dans l'onglet "premium"
-Idem pour consulter le montant à reverser au site web.
+Pour activer la fonctionnalité premium (pour les propriétaires) utilisez l'onglet portant votre nom d'utilisateur, situé au même endroit que le boutton "compte" vous ayant servis à vous connecter, puis rendez-vous dans l'onglet "Premium"
+Idem pour consulter le montant à reverser au site web, section "Redevance"
 
 
 
