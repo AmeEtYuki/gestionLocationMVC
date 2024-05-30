@@ -10,6 +10,19 @@ dbhost='127.0.0.1';
 dbport=3306
 ```
 
+Pour vous connecter à vôtre compte, utiliser le bouton "compte" en haut à droite puis cliquez sur inscription ou connexion, suivant si vous avez déjà un compte ou non puis suivez la procédure
+
+
+
+Pour activer la fonctionnalité premium (pour les propriétaires) utilisez l'onglet portant votre nom d'utilisateur
+
+
+
+
+
+
+
+
 Special thanks to :
 
 Stefangabos for [Zebra_DatePicker](https://github.com/stefangabos/Zebra_Datepicker)
